@@ -1,15 +1,16 @@
 import React from "react";
 
 import { Logo, Toggle } from "components";
-import { Wrapper, Container } from "./styled";
+import { Wrapper, Container, HeaderText } from "./styled";
 
 export const Header: React.FC = () => {
   return (
     <Wrapper>
       <Container data-testid="container">
         <Logo />
-        <Toggle />
+        <HeaderText>Spider Solitaire</HeaderText>
       </Container>
+      <Toggle />
     </Wrapper>
   );
 };

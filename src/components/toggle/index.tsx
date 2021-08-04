@@ -17,8 +17,10 @@ export const Toggle: React.FC<IButton> = () => {
       onClick={toggle}
       data-testid="toggle"
     >
-      <img src="/icons/sun-icon.svg" alt="sun" width="32" height="32" />
-      <img src="/icons/moon-icon.svg" alt="moon" width="32" height="32" />
+      <div>
+        <img src="/icons/sun-icon.svg" alt="sun" width="32" height="32" />
+        <img src="/icons/moon-icon.svg" alt="moon" width="32" height="32" />
+      </div>
     </ToggleContainer>
   );
 };

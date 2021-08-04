@@ -12,28 +12,29 @@ export const ToggleContainer = styled.button<{ themeName: string }>`
   overflow: hidden;
   padding: 0.5rem;
   position: relative;
-  width: 4rem;
-  height: 2rem;
+  width: 4.8rem;
+  height: 2.2rem;
 
   &:focus {
     outline: none;
   }
 
   div {
+    display: flex;
     height: auto;
     width: 2.5rem;
-    transition: all 0.3s linear;
 
-    // sun icon
-    &:first-child {
-      transform: ${({ themeName }) =>
-        themeName === "light" ? "translateY(0)" : "translateY(100px)"};
-    }
+    img {
+      transition: all 0.3s linear;
 
-    // moon icon
-    &:nth-child(2) {
-      transform: ${({ themeName }) =>
-        themeName === "light" ? "translateY(-100px)" : "translateY(0)"};
+      // sun icon
+      &:first-child {
+        transform: ${({ themeName }) => themeName === "light" ? "translateY(0)" : "translateY(100px)"}}
+  
+      // moon icon
+      &:nth-child(2) {
+        transform: ${({ themeName }) => themeName === "light" ? "translateY(-100px)" : "translateY(0)"}}
     }
+   
   }
 `;
