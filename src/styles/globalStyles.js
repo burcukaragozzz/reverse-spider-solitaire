@@ -6,11 +6,16 @@ const GlobalStyle = createGlobalStyle`
   *::before {
     box-sizing: border-box;
   }
-  
+
+  @font-face {
+    font-family: "Game";
+    src: url(/fonts/Gameboi95.ttf) format('truetype');
+  }
+
   body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-family: "Game";
   }
 `;
 
