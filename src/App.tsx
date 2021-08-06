@@ -1,17 +1,17 @@
 import { StyledThemeProvider } from "definitions/styled-components";
-import { AppState } from "context/appState";
+import { GameProvider } from "contexts";
 
 import Home from "pages";
 
 function App(): JSX.Element {
   return (
-    <AppState>
+    <GameProvider>
       <StyledThemeProvider>
         <div className="App">
           <Home />
         </div>
       </StyledThemeProvider>
-    </AppState>
+    </GameProvider>
   );
 }
 
