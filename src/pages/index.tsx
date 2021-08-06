@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from "react";
-import { AppContext } from "context/appContext";
+import React from "react";
+
+import { useGame } from "../hooks";
 import { Wrapper, Header, Card } from "components";
 
 import { CardsContainer, DeckContainer, CardStack } from "./styled";
@@ -7,24 +8,14 @@ import GlobalStyle from "styles/globalStyles";
 
 const Home: React.FC = () => {
 
-  const appContext = useContext(AppContext);
-
-  const {getCards, getDecks, decks, cards} = appContext;
-
-  useEffect(()=>{
-    getCards();
-    getDecks();
-  },[]);
+  const { decks } = useGame();
 
   return (
     <Wrapper>
       <GlobalStyle />
       <Header />
       <CardsContainer>
-      {console.log(cards)}
-      {console.log("decks", decks)}
-
-       {decks.slice(0, 10).map((deck, index) => (
+        {decks.slice(0, 10).map((deck, index) => (
           <>
             {deck.length == 0 ? (
               // <div
