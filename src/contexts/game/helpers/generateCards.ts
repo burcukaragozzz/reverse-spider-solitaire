@@ -31,7 +31,7 @@ export const generateCards = () => {
                     deck: i,
                     isSelected: false,
                     isHighlighted: false,
-                    id: i + j + (new Date()).getMilliseconds().toString()
+                    id: i + j + (new Date()).getMilliseconds().toString() + Math.random()
                 });
             }
         }
