@@ -11,6 +11,7 @@ export const CardBody = styled.div`
   height: 9.6vw;
   border-radius: 0.6vw;
 	background-color: white;
+  margin-bottom: -7.5vw;
 
   &:hover {
     box-shadow: 4px 4px 10px rgb(247, 210, 0);
@@ -21,9 +22,13 @@ export const CardBody = styled.div`
     background-repeat: no-repeat;
     background-image: url("/images/card_back.png");
     text-decoration: transparent;
-    margin-bottom: -7.5vw;
   `};
 
+  ${({ isSelected }) => isSelected && ` 
+    box-shadow: 10px 10px 12px black !important;
+    border: 2px solid black;
+  `
+  }
 `;
 
 export const CardValue = styled.span<{ right: boolean }>`
@@ -33,8 +38,7 @@ export const CardValue = styled.span<{ right: boolean }>`
 `;
 
 export const DiamondLogo = styled.img`
-  height: 90px;
-  width: 65px;
+  width: 65%;
   margin: 0 auto;
   visibility: ${({ isContentVisible }) => isContentVisible ? "visible" : "hidden"};
 `;

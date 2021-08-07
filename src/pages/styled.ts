@@ -12,6 +12,6 @@ export const DeckContainer = styled.div`
     flex-direction: column;
 `;
 
-export const CardStack = styled.div`
+export const CardWrapper = styled.div`
     transition: all 2s smooth;
 `;
