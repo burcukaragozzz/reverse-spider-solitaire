@@ -38,6 +38,8 @@ export const GameProvider = (props) => {
         dispatch({ type: GameActions.SET_SOURCE, payload: source })
     }
 
+
+    // * premimum: move(item, source, destination)
     const moveCard = (selectedCard: ICard, selectedColumn: IColumn) => {
         if (source) {
             const canMove = selectedCard.rank.value - source.card.rank.value === 1;
@@ -45,11 +47,11 @@ export const GameProvider = (props) => {
             if (canMove) {
                 const columnsCopy = [...columns];
 
-                removeCardFromColumn(source, columnsCopy)
+                const updatedSourceColumn = removeCardFromColumn(source, columnsCopy)
+
+                flipLastCard(updatedSourceColumn, columnsCopy)
 
                 addCardToColumn(source.card, selectedColumn, columnsCopy)
-
-                flipLastCard(source.column, columnsCopy)
 
                 dispatch({ type: GameActions.SET_COLUMNS, payload: columnsCopy })
             }

@@ -7,7 +7,11 @@ export const removeCardFromColumn = (source: ISource, columns: IColumn[]) => {
 
     const sourceColumn = columns[sourceColumnIndex]
 
-    columns[sourceColumnIndex] = { ...sourceColumn, cards: updatedSourceCards };
+    const updatedSourceColumn = { ...sourceColumn, cards: updatedSourceCards };
+
+    columns[sourceColumnIndex] = updatedSourceColumn
+
+    return updatedSourceColumn;
 }
 
 export const addCardToColumn = (card: ICard, targetColumn: IColumn, columns: IColumn[]) => {
