@@ -1,37 +1,78 @@
 import { useEffect, useReducer } from "react";
 import { shuffle } from 'lodash';
+import { ICard, IColumn, ISource } from 'interfaces';
 
 import { GameContext } from "./context";
 import { GameReducer } from "./reducer";
-import { generateCards, generateDecks } from './helper'
-
-import { SET_DECKS } from "./types";
+import {
+    removeCardFromColumn,
+    addCardToColumn,
+    generateCards,
+    flipLastCard,
+    dealCards,
+ } from './helpers'
+import { GameActions } from "./types";
 
 export const GameProvider = (props) => {
-
     const [state, dispatch] = useReducer(GameReducer, {
-        decks: [],
+        columns: [],
+        source: null,
     });
+
+    const { source, columns } = state;
 
     const initializeState = () => {
         const cards = generateCards();
 
         const shuffledCards = shuffle(cards);
 
-        const decks = generateDecks(shuffledCards);
+        const { columns, remaining } = dealCards(shuffledCards);
 
-        dispatch({ 
-            type: SET_DECKS,
-            payload: decks
+        dispatch({
+            type: GameActions.SET_COLUMNS,
+            payload: columns
         });
+    }
+
+    const setSource = (source: ISource | null) => {
+        dispatch({ type: GameActions.SET_SOURCE, payload: source })
+    }
+
+    const moveCard = (selectedCard: ICard, selectedColumn: IColumn) => {
+        if (source) {
+            const canMove = selectedCard.rank.value - source.card.rank.value === 1;
+
+            if (canMove) {
+                const columnsCopy = [...columns];
+
+                removeCardFromColumn(source, columnsCopy)
+
+                addCardToColumn(source.card, selectedColumn, columnsCopy)
+
+                flipLastCard(source.column, columnsCopy)
+
+                dispatch({ type: GameActions.SET_COLUMNS, payload: columnsCopy })
+            }
+
+            setSource(null);
+        } else {
+            setSource({ card: selectedCard, column: selectedColumn })
+        }
     }
 
     useEffect(() => {
         initializeState()
     }, []);
 
+    const contextValue = {
+        ...state,
+        setSource,
+        moveCard,
+        dispatch
+    }
+
     return (
-        <GameContext.Provider value={state}>
+        <GameContext.Provider value={contextValue}>
             {props.children}
         </GameContext.Provider>
     );

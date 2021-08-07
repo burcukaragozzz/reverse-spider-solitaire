@@ -1,7 +1,19 @@
-export type GameState = {
-    cards: any[],
-    decks: any[]
+import { Dispatch } from "react";
+import { ICard, IColumn, ISource } from "interfaces";
+
+export interface IGameState {
+    cards: ICard[],
+    columns: IColumn[],
+    source: ISource,
 }
 
-export const SET_DECKS = 'SET_DECKS';
-export const SET_CARDS = 'SET_CARDS';
+export interface IGame extends IGameState {
+    dispatch: Dispatch<any>
+    setSource: (card: ICard, column?: IColumn) => void,
+    moveCard: (card: ICard, column: IColumn) => void
+};
+
+export enum GameActions {
+    SET_SOURCE,
+    SET_COLUMNS
+}

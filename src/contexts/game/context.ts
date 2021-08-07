@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-import { GameState } from './types'
+import { IGame } from './types'
 
-export const GameContext = createContext({} as GameState);
+export const GameContext = createContext({} as IGame);
