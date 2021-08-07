@@ -1,33 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+
+import { ICard } from "interfaces";
 
 import { CardBody, CardValue, DiamondLogo } from "./styled";
 
-export interface ICard {
-  card: {
-    rank: string,
-    isSelected: boolean, 
-    isDown: boolean,
-    isHighlighted: boolean
-    deck: string,
-    suit: string
-  },
+export type Props = {
+  card: ICard
   isDown: boolean
   isSelected: boolean, 
   isHighlighted: boolean
 }
 
-export const Card: React.FC<ICard> = ({
+export const Card: React.FC<Props> = ({
   card,
-  isDown
+  isDown,
+  isSelected,
+  isHighlighted
 }) => {
 
   const isContentVisible = isDown ? false : true;
 
   return (
-    <CardBody isDown={isDown} isSelected isHighlighted>
-      <CardValue isContentVisible={isContentVisible}>{card.rank}</CardValue>
+    <CardBody isDown={isDown} isSelected={isSelected} isHighlighted>
+      <CardValue isContentVisible={isContentVisible}>{card.rank.displayValue}</CardValue>
       <DiamondLogo isContentVisible={isContentVisible} src="/images/diamond.png" alt="diamond-logo" />
-      <CardValue isContentVisible={isContentVisible} right>{card.rank}</CardValue>
+      <CardValue isContentVisible={isContentVisible} right>{card.rank.displayValue}</CardValue>
     </CardBody>
   );
 };
