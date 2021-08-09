@@ -5,6 +5,7 @@ export interface IGameState {
     cards: ICard[],
     columns: IColumn[],
     source: ISource,
+    remainingCards: ICard[]
 }
 
 export interface IGame extends IGameState {
@@ -15,5 +16,6 @@ export interface IGame extends IGameState {
 
 export enum GameActions {
     SET_SOURCE,
-    SET_COLUMNS
+    SET_COLUMNS,
+    SET_REMAINING_CARDS
 }

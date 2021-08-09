@@ -14,6 +14,11 @@ export const GameReducer = (state, action) => {
         ...state,
         columns: payload
       }
+    case GameActions.SET_REMAINING_CARDS:
+      return {
+        ...state,
+        remainingCards: payload
+      }
     default:
       return state;
   }

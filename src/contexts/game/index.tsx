@@ -10,6 +10,7 @@ import {
     generateCards,
     flipLastCard,
     dealCards,
+    distributeRemainingCards,
  } from './helpers'
 import { GameActions } from "./types";
 
@@ -28,9 +29,16 @@ export const GameProvider = (props) => {
 
         const { columns, remaining } = dealCards(shuffledCards);
 
+        const remainingCards = distributeRemainingCards(remaining);
+
         dispatch({
             type: GameActions.SET_COLUMNS,
             payload: columns
+        });
+
+        dispatch({
+            type: GameActions.SET_REMAINING_CARDS,
+            payload: remainingCards
         });
     }
 
@@ -41,6 +49,8 @@ export const GameProvider = (props) => {
 
     // * premimum: move(item, source, destination)
     const moveCard = (selectedCard: ICard, selectedColumn: IColumn) => {
+
+
         if (source) {
             const [lastCard] = selectedColumn.cards.slice(-1);
 
@@ -50,11 +60,14 @@ export const GameProvider = (props) => {
                 const columnsCopy = [...columns];
                 const updatedSourceColumn = removeCardFromColumn(source, columnsCopy)
 
+                // selectMultipleCard(source, source.card );
+
                 flipLastCard(updatedSourceColumn, columnsCopy)
 
                 addCardToColumn(source.card, selectedColumn, columnsCopy)
 
                 dispatch({ type: GameActions.SET_COLUMNS, payload: columnsCopy })
+
             }
 
             setSource(null);
