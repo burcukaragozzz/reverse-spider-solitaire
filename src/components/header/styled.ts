@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.headerBg};
-  padding: 20px 60px;
+  padding: 0px 60px;
 `;
 
 export const Container = styled.div`
