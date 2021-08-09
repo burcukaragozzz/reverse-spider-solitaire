@@ -42,11 +42,12 @@ export const GameProvider = (props) => {
     // * premimum: move(item, source, destination)
     const moveCard = (selectedCard: ICard, selectedColumn: IColumn) => {
         if (source) {
-            const canMove = selectedCard.rank.value - source.card.rank.value === 1;
+            const [lastCard] = selectedColumn.cards.slice(-1);
+
+            const canMove = lastCard.rank.value - source.card.rank.value === 1;
 
             if (canMove) {
                 const columnsCopy = [...columns];
-
                 const updatedSourceColumn = removeCardFromColumn(source, columnsCopy)
 
                 flipLastCard(updatedSourceColumn, columnsCopy)

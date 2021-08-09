@@ -8,20 +8,22 @@ export type Props = {
   card: ICard
   isDown: boolean
   isSelected: boolean, 
-  isHighlighted: boolean
+  isHighlighted: boolean,
+  onClick?: VoidFunction
 }
 
 export const Card: React.FC<Props> = ({
   card,
   isDown,
   isSelected,
-  isHighlighted
+  isHighlighted,
+  onClick
 }) => {
 
   const isContentVisible = isDown ? false : true;
 
   return (
-    <CardBody isDown={isDown} isSelected={isSelected} isHighlighted>
+    <CardBody isDown={isDown} isSelected={isSelected} isHighlighted onClick={onClick}>
       <CardValue isContentVisible={isContentVisible}>{card.rank.displayValue}</CardValue>
       <DiamondLogo isContentVisible={isContentVisible} src="/images/diamond.png" alt="diamond-logo" />
       <CardValue isContentVisible={isContentVisible} right>{card.rank.displayValue}</CardValue>

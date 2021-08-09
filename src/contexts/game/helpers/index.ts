@@ -1,4 +1,5 @@
 export * from './generateCards';
 export * from './dealCards';
-export * from './cardHelpers';
+export * from './addCardToColumn';
+export * from './removeCardFromColumn';
 export * from './flipLastCard';
