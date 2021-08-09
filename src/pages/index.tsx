@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 
 import { useGame } from "../hooks";
-import { Wrapper, Header, Card } from "components";
+import { Wrapper, Header, Card, CardHolder } from "components";
 import { ICard, IColumn } from "interfaces";
 
 import GlobalStyle from "styles/globalStyles";
-import { CardsContainer, DeckContainer, CardWrapper } from "./styled";
+import { 
+  GameArea,
+  TopContainer,
+  CompletedDeckCards,
+  CardsWrapper,
+  DeckContainer,
+  CardContainer,
+  RemCardsContainer
+} from "./styled";
 
 const Home: React.FC = () => {
 
-  const { columns, source, moveCard } = useGame();
+  const { columns, source, moveCard, remainingCards} = useGame();
 
   const [selectedId, setSelectedId] = useState("");
 
@@ -22,42 +30,44 @@ const Home: React.FC = () => {
     <Wrapper>
       <GlobalStyle />
       <Header />
-      <CardsContainer>
-        {columns.map((column, index) => (
-          <>
-            {column.cards.length === 0 ? (
-              // <div
-              //   id="holder"
-              //   key={index + "0"}
-              //   onClick={() => {
-              //     selectCard("", column, true, game, setgame);
-              //   }}
-              // >
-              //   <CardHolder key={index + " 1"} deck={deck} />
-              // </div>
-              <span>card holder yapılacak</span>
-            ) : (
-              <DeckContainer key={index + " 2"} className="decks-container">
-                {column.cards.map((card) => (
-                  <CardWrapper
-                    id={card.id}
-                    key={card.id}
-                    onClick={() => handleCardClick(card, column)}
-                  >
-                    <Card
-                      card={card}
-                      isSelected={card.id === selectedId}
-                      isDown={card.isDown}
-                      isHighlighted={card.isHighlighted}
-                    />
-                  </CardWrapper>
-                ))}
-              </DeckContainer>
-            )}
-          </>
-        ))}
-      </CardsContainer>
-
+      <GameArea>
+        <TopContainer>
+          <RemCardsContainer>
+            {remainingCards?.map(_ => <CardHolder isRemainingCard={true} />)}
+          </RemCardsContainer>
+          <CompletedDeckCards>
+            {[1,2,3,4,5,6,7,8].map(_ => <CardHolder />)}
+          </CompletedDeckCards>
+        </TopContainer>
+        <CardsWrapper>
+          {columns.map((column, index) => (
+            <>
+              {column.cards.length === 0 ? (
+              <CardContainer>
+                <CardHolder />
+              </CardContainer>
+              ) : (
+                <DeckContainer key={index + " 2"}>
+                  {column.cards.map((card) => (
+                    <CardContainer
+                      id={card.id}
+                      key={card.id}
+                      onClick={() => handleCardClick(card, column)}
+                    >
+                      <Card
+                        card={card}
+                        isSelected={card.id === selectedId}
+                        isDown={card.isDown}
+                        isHighlighted={card.isHighlighted}
+                      />
+                    </CardContainer>
+                  ))}
+                </DeckContainer>
+              )}
+            </>
+          ))}
+        </CardsWrapper>
+      </GameArea>
     </Wrapper>
   );
 };
