@@ -3,16 +3,17 @@ import React from "react";
 import { CardBody } from "./styled";
 
 export type Props = {
-  isRemainingCard?: boolean,
-}
+  isRemainingCard?: boolean;
+  onClick?: VoidFunction;
+};
 
 export const CardHolder: React.FC<Props> = ({
-  children, 
-  isRemainingCard
+  children,
+  isRemainingCard,
+  onClick,
 }) => {
-
   return (
-    <CardBody isRemainingCard={isRemainingCard}>
+    <CardBody isRemainingCard={isRemainingCard} onClick={onClick}>
       {children}
     </CardBody>
   );
