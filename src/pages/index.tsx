@@ -1,48 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useGame } from "../hooks";
-import { Wrapper, Header, Card, CardHolder } from "components";
-import { ICard, IColumn } from "interfaces";
+import { Wrapper, Header, Card, CardHolder, TopContainer } from "components";
 
 import GlobalStyle from "styles/globalStyles";
-import {
-  GameArea,
-  TopContainer,
-  CompletedDeckCards,
-  CardsWrapper,
-  DeckContainer,
-  CardContainer,
-  RemCardsContainer,
-} from "./styled";
+import { GameArea, CardsWrapper, DeckContainer, CardContainer } from "./styled";
 
 const Home: React.FC = () => {
   const { columns, source, moveCard, remainingCards, startNextTurn } =
     useGame();
-
-  const [selectedId, setSelectedId] = useState("");
-
-  const handleCardClick = (card: ICard, column: IColumn) => {
-    setSelectedId(source ? "" : card.id);
-    moveCard(card, column);
-  };
 
   return (
     <Wrapper>
       <GlobalStyle />
       <Header />
       <GameArea>
-        <TopContainer>
-          <RemCardsContainer>
-            {remainingCards?.map((cards) => (
-              <CardHolder isRemainingCard={true} onClick={startNextTurn} />
-            ))}
-          </RemCardsContainer>
-          <CompletedDeckCards>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((_) => (
-              <CardHolder />
-            ))}
-          </CompletedDeckCards>
-        </TopContainer>
+        <TopContainer />
         <CardsWrapper>
           {columns.map((column, index) => (
             <>
@@ -56,11 +29,15 @@ const Home: React.FC = () => {
                     <CardContainer
                       id={card.id}
                       key={card.id}
-                      onClick={() => handleCardClick(card, column)}
+                      onClick={() => moveCard(card, column)}
                     >
                       <Card
                         card={card}
-                        isSelected={card.id === selectedId}
+                        isSelected={
+                          !!source?.cards.find(
+                            (movingCard) => movingCard.id === card.id
+                          )
+                        }
                         isDown={card.isDown}
                         isHighlighted={card.isHighlighted}
                       />
