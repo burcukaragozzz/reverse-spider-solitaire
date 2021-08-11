@@ -4,6 +4,12 @@ export const GameReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case GameActions.SET_COLUMNS_AND_REMAINING_CARDS:
+      return {
+        ...state,
+        columns: payload.columns,
+        remainingCards: payload.remainingCards
+      }
     case GameActions.SET_SOURCE:
       return {
         ...state,
@@ -12,12 +18,7 @@ export const GameReducer = (state, action) => {
     case GameActions.SET_COLUMNS:
       return {
         ...state,
-        columns: payload
-      }
-    case GameActions.SET_REMAINING_CARDS:
-      return {
-        ...state,
-        remainingCards: payload
+        columns: payload,
       }
     default:
       return state;

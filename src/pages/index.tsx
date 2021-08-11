@@ -5,26 +5,26 @@ import { Wrapper, Header, Card, CardHolder } from "components";
 import { ICard, IColumn } from "interfaces";
 
 import GlobalStyle from "styles/globalStyles";
-import { 
+import {
   GameArea,
   TopContainer,
   CompletedDeckCards,
   CardsWrapper,
   DeckContainer,
   CardContainer,
-  RemCardsContainer
+  RemCardsContainer,
 } from "./styled";
 
 const Home: React.FC = () => {
-
-  const { columns, source, moveCard, remainingCards} = useGame();
+  const { columns, source, moveCard, remainingCards, startNextTurn } =
+    useGame();
 
   const [selectedId, setSelectedId] = useState("");
 
   const handleCardClick = (card: ICard, column: IColumn) => {
-    setSelectedId(source ? "" : card.id)
+    setSelectedId(source ? "" : card.id);
     moveCard(card, column);
-  }
+  };
 
   return (
     <Wrapper>
@@ -33,19 +33,23 @@ const Home: React.FC = () => {
       <GameArea>
         <TopContainer>
           <RemCardsContainer>
-            {remainingCards?.map(_ => <CardHolder isRemainingCard={true} />)}
+            {remainingCards?.map((cards) => (
+              <CardHolder isRemainingCard={true} onClick={startNextTurn} />
+            ))}
           </RemCardsContainer>
           <CompletedDeckCards>
-            {[1,2,3,4,5,6,7,8].map(_ => <CardHolder />)}
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((_) => (
+              <CardHolder />
+            ))}
           </CompletedDeckCards>
         </TopContainer>
         <CardsWrapper>
           {columns.map((column, index) => (
             <>
               {column.cards.length === 0 ? (
-              <CardContainer>
-                <CardHolder />
-              </CardContainer>
+                <CardContainer>
+                  <CardHolder />
+                </CardContainer>
               ) : (
                 <DeckContainer key={index + " 2"}>
                   {column.cards.map((card) => (
