@@ -2,12 +2,12 @@ import React from "react";
 
 import { CardBody } from "./styled";
 
-export type Props = {
+export type CardHolderProps = {
   isRemainingCard?: boolean;
   onClick?: VoidFunction;
 };
 
-export const CardHolder: React.FC<Props> = ({
+export const CardHolder: React.FC<CardHolderProps> = ({
   children,
   isRemainingCard,
   onClick,
