@@ -7,8 +7,7 @@ import GlobalStyle from "styles/globalStyles";
 import { GameArea, CardsWrapper, DeckContainer, CardContainer } from "./styled";
 
 const Home: React.FC = () => {
-  const { columns, source, moveCard, remainingCards, startNextTurn } =
-    useGame();
+  const { columns, source, moveCard } = useGame();
 
   return (
     <Wrapper>

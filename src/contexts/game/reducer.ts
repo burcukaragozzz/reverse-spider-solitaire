@@ -15,6 +15,11 @@ export const GameReducer = (state, action) => {
         ...state,
         source: payload
       }
+    case GameActions.SET_TARGET:
+      return {
+        ...state,
+        target: payload
+      }
     case GameActions.SET_COLUMNS:
       return {
         ...state,
