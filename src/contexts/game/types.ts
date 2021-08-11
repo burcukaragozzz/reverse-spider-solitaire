@@ -5,7 +5,8 @@ export interface IGameState {
     cards: ICard[],
     columns: IColumn[],
     source: ISource,
-    remainingCards: ICard[]
+    remainingCards: ICard[],
+    completedSequences: ICard[][],
 }
 
 export interface IGame extends IGameState {

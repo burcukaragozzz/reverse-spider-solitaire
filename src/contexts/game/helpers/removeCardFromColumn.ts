@@ -1,4 +1,4 @@
-import { ISource, IColumn } from 'interfaces';
+import { ISource, IColumn, ICard } from 'interfaces';
 
 /**
  * Removes given card from the source column.
@@ -7,8 +7,13 @@ import { ISource, IColumn } from 'interfaces';
  * @returns Updated column
  */
 export const removeCardFromColumn = (source: ISource, columns: IColumn[]) => {
+    const movingCards = source.cards;
+
     //seçtiğim kartı dışarda bırakarak silmiş oluyorum
-    const updatedSourceCards = source.column.cards.filter((sourceCard) => sourceCard.id !== source.card.id)
+    // movingCards'ta bulunamayanlari filtrele.
+    const findInMovingCards = (card: ICard) => movingCards.find(movingCard => movingCard.id === card.id)
+
+    const updatedSourceCards = source.column.cards.filter((card) => !findInMovingCards(card))
 
     //indexe göre column bul
     const sourceColumnIndex = columns.findIndex((column) => column.id === source.column.id)

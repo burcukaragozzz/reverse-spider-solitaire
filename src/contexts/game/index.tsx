@@ -1,5 +1,5 @@
-import { Dispatch, useEffect, useReducer } from "react";
-import { shuffle, chunk } from "lodash";
+import { useEffect, useReducer } from "react";
+import { shuffle } from "lodash";
 import { ICard, IColumn, ISource } from "interfaces";
 
 import { GameContext } from "./context";
@@ -19,9 +19,10 @@ export const GameProvider = (props) => {
     columns: [],
     source: null,
     remainingCards: [],
+    completedSequences: Array(8).fill([]),
   });
 
-  const { source, columns, remainingCards } = state;
+  const { source, columns, remainingCards, completedSequences } = state;
 
   const initializeState = () => {
     const cards = generateCards();
@@ -43,24 +44,56 @@ export const GameProvider = (props) => {
   // * premimum: move(item, source, destination)
   const moveCard = (selectedCard: ICard, selectedColumn: IColumn) => {
     if (source) {
-      const [lastCard] = selectedColumn.cards.slice(-1);
+      const { isSequence } = source.cards
+        .map((card) => card.rank.value)
+        .reduce(
+          (acc, curr) => {
+            const is = acc?.value ? acc.value - curr === 1 : true;
 
-      const canMove = lastCard.rank.value - source.card.rank.value === 1;
+            return {
+              isSequence: acc.isSequence && is,
+              value: curr,
+            };
+          },
+          {
+            isSequence: true,
+          }
+        );
+
+      console.log({ isSequence });
+
+      const targetColumn = selectedColumn;
+
+      const [targetCard] = targetColumn.cards.slice(-1);
+
+      const isContinous =
+        targetCard.rank.value - source.cards[0].rank.value === 1;
+
+      const canMove = isSequence && isContinous;
 
       if (canMove) {
         const columnsCopy = [...columns];
+
         const updatedSourceColumn = removeCardFromColumn(source, columnsCopy);
 
         flipLastCard(updatedSourceColumn, columnsCopy);
 
-        addCardToColumn(source.card, selectedColumn, columnsCopy);
+        addCardToColumn(source.cards, selectedColumn, columnsCopy);
 
         dispatch({ type: GameActions.SET_COLUMNS, payload: columnsCopy });
+      } else {
+        alert(`isSequence: ${isSequence}, isContinous: ${isContinous}`);
       }
 
       setSource(null);
     } else {
-      setSource({ card: selectedCard, column: selectedColumn });
+      const selectedCardIndex = selectedColumn.cards.findIndex(
+        (card) => card.id === selectedCard.id
+      );
+
+      const cards = selectedColumn.cards.slice(selectedCardIndex);
+
+      setSource({ cards, column: selectedColumn });
     }
   };
 

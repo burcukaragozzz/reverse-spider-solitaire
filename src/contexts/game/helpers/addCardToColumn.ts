@@ -6,14 +6,14 @@ import { ICard, IColumn, } from 'interfaces';
  * @param targetColumn Target column
  * @param columns Copy of all columns
  */
-export const addCardToColumn = (card: ICard, targetColumn: IColumn, columns: IColumn[]) => {
+export const addCardToColumn = (cards: ICard[], targetColumn: IColumn, columns: IColumn[]) => {
     const targetColumnIndex = columns.findIndex(column => column.id === targetColumn.id)
 
     const updatedTargetColumn = {
         ...targetColumn,
         cards: [
             ...targetColumn.cards,
-            card
+            ...cards,
         ]
     };
 
