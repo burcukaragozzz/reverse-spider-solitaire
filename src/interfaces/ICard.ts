@@ -6,6 +6,5 @@ export interface ICard {
     isSelected: boolean;
     isDown: boolean;
     isHighlighted: boolean;
-    deck: string;
     suit: string;
 }

@@ -1,6 +1,3 @@
-import { IColumn, ICard } from "interfaces";
+import { ISource } from "interfaces";
 
-export interface ITarget {
-    column: IColumn;
-    card: ICard
-}
+export type ITarget = Pick<ISource, "column">;
