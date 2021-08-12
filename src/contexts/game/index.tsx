@@ -20,7 +20,7 @@ export const GameProvider = (props) => {
   const [state, dispatch] = useReducer(GameReducer, {
     columns: [],
     source: null,
-    destination: null,
+    target: null,
     remainingCards: [],
     completedSequences: Array(8).fill([]),
   });
@@ -40,6 +40,10 @@ export const GameProvider = (props) => {
     });
   };
 
+  const setError = (error: string) => {
+    dispatch({ type: GameActions.SET_ERROR, payload: error });
+  };
+
   const setSource = (source: ISource | null) => {
     dispatch({
       type: GameActions.SET_SOURCE,
@@ -54,22 +58,41 @@ export const GameProvider = (props) => {
     });
   };
 
-  const getMovingCards = (selectedCard: ICard, column: IColumn) => {
-    const selectedCardIndex = column.cards.findIndex(
+  const setTargetSafely = (targetColumn: IColumn) => {
+    const isSameColumn = source.column.id === targetColumn.id;
+
+    if (isSameColumn) return setSource(null);
+
+    setTarget({ column: targetColumn });
+  };
+
+  const setSourceSafely = (sourceColumn: IColumn, sourceCard: ICard) => {
+    const cards = getMovingCards(sourceColumn, sourceCard);
+
+    const isSequence = checkIsSequence(cards);
+
+    if (isSequence) {
+      setSource({ cards, column: sourceColumn });
+    } else {
+      setError("Not a sequence!");
+    }
+  };
+
+  const getMovingCards = (sourceColumn: IColumn, selectedCard: ICard) => {
+    const selectedCardIndex = sourceColumn.cards.findIndex(
       (card) => selectedCard.id === card.id
     );
 
-    return column.cards.slice(selectedCardIndex);
+    const movingCards = sourceColumn.cards.slice(selectedCardIndex);
+
+    return movingCards;
   };
 
   const checkCanMove = () => {
     const [targetCard] = target.column.cards.slice(-1);
 
-    // const isSequence = checkIsSequence(source);
-
     const isContinous = checkIsGreaterOneRank(targetCard, source.cards[0]);
 
-    // return isSequence && isContinous;
     return isContinous;
   };
 
@@ -85,31 +108,6 @@ export const GameProvider = (props) => {
     dispatch({ type: GameActions.SET_COLUMNS, payload: columnsCopy });
   };
 
-  // * premimum: move(item, source, destination)
-  // selectCard
-  const moveCard = (selectedCard: ICard, selectedColumn: IColumn) => {
-    if (source) {
-      if (source.column.id === selectedColumn.id) {
-        return setSource(null);
-      }
-
-      setTarget({ card: selectedCard, column: selectedColumn });
-    } else {
-      const cards = getMovingCards(selectedCard, selectedColumn);
-
-      const isSequence = checkIsSequence({
-        cards,
-        column: selectedColumn,
-      });
-
-      if (isSequence) {
-        setSource({ cards, column: selectedColumn });
-      } else {
-        alert("NOT a sequence!");
-      }
-    }
-  };
-
   const startNextTurn = () => {
     dispatch({
       type: GameActions.SET_COLUMNS_AND_REMAINING_CARDS,
@@ -117,29 +115,51 @@ export const GameProvider = (props) => {
     });
   };
 
-  useEffect(() => {
-    initializeState();
-  }, []);
-
-  useEffect(() => {
+  const moveSelection = () => {
     if (target) {
       const canMove = checkCanMove();
 
       if (canMove) {
         setUpdatedColumns();
       } else {
-        alert("You cannot move!");
+        setError("You cannot move!");
       }
 
       setTarget(null);
       setSource(null);
     }
+  };
+
+  useEffect(() => {
+    initializeState();
+  }, []);
+
+  useEffect(() => {
+    moveSelection();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target]);
+
+  const discardSequence = () => {};
+
+  // useEffect(() => {
+  //   const facedUpCards = target.column.cards.filter(
+  //     (card) => card.isDown === false
+  //   );
+
+  //   const isCount13 = facedUpCards.length === 13;
+
+  //   if (isCount13) {
+  //     const isSequence = checkIsSequence(facedUpCards);
+
+  //     isSequence && discardSequence();
+  //   }
+  // }, [columns]);
 
   const contextValue = {
     ...state,
-    moveCard,
     startNextTurn,
+    setTargetSafely,
+    setSourceSafely,
     dispatch,
   };
 

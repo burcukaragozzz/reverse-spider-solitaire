@@ -1,13 +1,22 @@
 import React from "react";
 
-import { useGame } from "../hooks";
+import { useGame } from "hooks";
+import { ICard, IColumn } from "interfaces";
+import GlobalStyle from "styles/globalStyles";
 import { Wrapper, Header, Card, CardHolder, TopContainer } from "components";
 
-import GlobalStyle from "styles/globalStyles";
 import { GameArea, CardsWrapper, DeckContainer, CardContainer } from "./styled";
 
 const Home: React.FC = () => {
-  const { columns, source, moveCard } = useGame();
+  const { columns, source, setTargetSafely, setSourceSafely } = useGame();
+
+  const handleCardClick = (selectedColumn: IColumn, selectedCard: ICard) => {
+    if (source) {
+      setTargetSafely(selectedColumn);
+    } else {
+      setSourceSafely(selectedColumn, selectedCard);
+    }
+  };
 
   return (
     <Wrapper>
@@ -28,7 +37,7 @@ const Home: React.FC = () => {
                     <CardContainer
                       id={card.id}
                       key={card.id}
-                      onClick={() => moveCard(card, column)}
+                      onClick={() => handleCardClick(column, card)}
                     >
                       <Card
                         card={card}

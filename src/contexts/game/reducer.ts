@@ -1,6 +1,8 @@
-import { GameActions } from "./types";
+import { Reducer } from "react";
+import { Action } from "interfaces";
+import { IGameState, GameActions } from "./types";
 
-export const GameReducer = (state, action) => {
+export const GameReducer: Reducer<IGameState, Action<GameActions>> = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -24,6 +26,11 @@ export const GameReducer = (state, action) => {
       return {
         ...state,
         columns: payload,
+      }
+    case GameActions.SET_ERROR:
+      return {
+        ...state,
+        error: payload,
       }
     default:
       return state;
