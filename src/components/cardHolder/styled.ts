@@ -1,16 +1,17 @@
 import styled from "styled-components/macro";
 
 export const CardBody = styled.div`
-    width: 6.8vw;
-    height: 9.6vw;
-    border-radius: 0.6vw;
-    border: 1px solid ${({ theme }) => theme.colors.borderColor};
+  width: 6.8vw;
+  height: 9.6vw;
+  border-radius: 0.6vw;
+  box-shadow: 0px 1px 4px  ${({ theme }) => theme.colors.borderColor};
 
-    ${({ imageUrl }) => imageUrl && ` 
+
+  ${({ imageUrl }) => imageUrl && ` 
       background-image: url(${imageUrl});
       background-size: cover;
       background-repeat: no-repeat;
       margin-left: -50px;
+      border: 1px solid black;
     `};
 `;
-

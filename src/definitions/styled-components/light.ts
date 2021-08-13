@@ -11,7 +11,7 @@ const light: DefaultTheme = {
     background: "#EFF1f5",
     headerBg: "#37783C",
     cardsBg: "#FFFFFF",
-    borderColor: "#000000",
+    borderColor: "#BABABA",
     dodgerBlue: "#007BFF",
   },
 };
