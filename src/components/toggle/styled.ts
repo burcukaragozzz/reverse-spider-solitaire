@@ -1,19 +1,17 @@
 import styled from "styled-components/macro";
 
 export const ToggleContainer = styled.button<{ themeName: string }>`
+  position: relative;
   background: ${({ theme }) => theme.colors.gradient};
   border: 1px solid ${({ theme }) => theme.colors.toggleBorder};
   border-radius: 30px;
   cursor: pointer;
   display: flex;
-  font-size: 0.5rem;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  padding: 0.5rem;
-  position: relative;
-  width: 4.8rem;
-  height: 2.2rem;
+  width: 4.6rem;
+  height: 2rem;
 
   &:focus {
     outline: none;
@@ -22,7 +20,7 @@ export const ToggleContainer = styled.button<{ themeName: string }>`
   div {
     display: flex;
     height: auto;
-    width: 2.5rem;
+    width: 1.5rem;
 
     img {
       transition: all 0.3s linear;

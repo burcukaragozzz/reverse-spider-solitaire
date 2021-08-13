@@ -10,7 +10,7 @@ type ExtendedColors =
   | "background"
   | "headerBg"
   | "cardsBg"
-  | "textColor"
+  | "borderColor"
   | "dodgerBlue";
 declare module "styled-components" {
   export interface BaseTheme {
