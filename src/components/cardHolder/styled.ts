@@ -4,12 +4,11 @@ export const CardBody = styled.div`
     width: 6.8vw;
     height: 9.6vw;
     border-radius: 0.6vw;
-    background-color: lightgrey;
-    border: 1px solid black;
+    border: 1px solid ${({ theme }) => theme.colors.borderColor};
 
-    ${({ isRemainingCard }) => isRemainingCard && ` 
-      background-image: url("/images/card_back.png");
-      background-size: contain;
+    ${({ imageUrl }) => imageUrl && ` 
+      background-image: url(${imageUrl});
+      background-size: cover;
       background-repeat: no-repeat;
       margin-left: -50px;
     `};

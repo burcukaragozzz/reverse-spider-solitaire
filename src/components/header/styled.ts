@@ -1,10 +1,10 @@
 import styled from "styled-components/macro";
 
-export const Wrapper = styled.div`
+export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.headerBg};
-  padding: 0px 60px;
+  padding: 10px 60px;
 `;
 
 export const Container = styled.div`

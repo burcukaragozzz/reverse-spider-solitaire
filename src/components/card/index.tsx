@@ -2,31 +2,32 @@ import React from "react";
 
 import { ICard } from "interfaces";
 
-import { CardBody, CardValue, DiamondLogo } from "./styled";
+import { CardBody, CardImage } from "./styled";
 
 export type Props = {
-  card: ICard
-  isDown: boolean
-  isSelected: boolean, 
-  isHighlighted: boolean,
-  onClick?: VoidFunction
-}
+  card: ICard;
+  isDown: boolean;
+  isSelected: boolean;
+  isHighlighted: boolean;
+  onClick?: VoidFunction;
+};
 
 export const Card: React.FC<Props> = ({
   card,
   isDown,
   isSelected,
   isHighlighted,
-  onClick
+  onClick,
 }) => {
+  const { suit, rank } = card;
 
-  const isContentVisible = isDown ? false : true;
+  const imageUrl = isDown
+    ? "/images/card_back.png"
+    : `/images/${suit}/${suit}_${rank.value}.png`;
 
   return (
-    <CardBody isDown={isDown} isSelected={isSelected} isHighlighted onClick={onClick}>
-      <CardValue isContentVisible={isContentVisible}>{card.rank.displayValue}</CardValue>
-      <DiamondLogo isContentVisible={isContentVisible} src="/images/diamond.png" alt="diamond-logo" />
-      <CardValue isContentVisible={isContentVisible} right>{card.rank.displayValue}</CardValue>
+    <CardBody isSelected={isSelected} isHighlighted onClick={onClick}>
+      <CardImage isDown={isDown} src={imageUrl} alt="diamond-logo" />
     </CardBody>
   );
 };

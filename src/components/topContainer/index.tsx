@@ -11,7 +11,10 @@ export const TopContainer = () => {
     <Container>
       <RemCardsContainer>
         {remainingCards?.map(() => (
-          <CardHolder isRemainingCard={true} onClick={startNextTurn} />
+          <CardHolder
+            onClick={startNextTurn}
+            imageUrl="/images/card_back.png"
+          />
         ))}
       </RemCardsContainer>
 

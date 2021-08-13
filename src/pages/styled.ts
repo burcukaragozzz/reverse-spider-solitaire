@@ -8,7 +8,7 @@ export const CardsWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 50px 0;
+    padding: 50px 0;
 `;
 
 export const CardContainer = styled.div`
