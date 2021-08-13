@@ -1,16 +1,16 @@
-import { ICard } from "interfaces";
+import { ICard } from 'interfaces';
 
 const generateId = (i: number, j: number) => {
-    return i + j + (new Date()).getMilliseconds().toString() + Math.random()
-}
+    return i + j + new Date().getMilliseconds().toString() + Math.random();
+};
 
 const generateCard = (params: Pick<ICard, 'id' | 'rank'>): ICard => ({
     ...params,
-    suit: "diamonds",
+    suit: 'diamonds',
     isDown: true,
     isSelected: false,
     isHighlighted: false,
-})
+});
 
 const getDisplayValue = (value: number) => {
     switch (value) {
@@ -25,22 +25,22 @@ const getDisplayValue = (value: number) => {
         default:
             return value.toString();
     }
-}
+};
 
 export const generateCards = () => {
     try {
-        const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(value => ({
+        const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((value) => ({
             value,
-            displayValue: getDisplayValue(value)
+            displayValue: getDisplayValue(value),
         }));
 
         const cards = [];
 
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < ranks.length; j++) {
-                const id = generateId(i, j)
+                const id = generateId(i, j);
                 const rank = ranks[j];
-                const card = generateCard({ id, rank })
+                const card = generateCard({ id, rank });
                 cards.push(card);
             }
         }

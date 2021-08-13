@@ -1,4 +1,4 @@
-import { ICard, IColumn, } from 'interfaces';
+import { ICard, IColumn } from 'interfaces';
 
 /**
  * Adds selected card into the target column.
@@ -7,15 +7,12 @@ import { ICard, IColumn, } from 'interfaces';
  * @param columns Copy of all columns
  */
 export const addCardToColumn = (cards: ICard[], targetColumn: IColumn, columns: IColumn[]) => {
-    const targetColumnIndex = columns.findIndex(column => column.id === targetColumn.id)
+    const targetColumnIndex = columns.findIndex((column) => column.id === targetColumn.id);
 
     const updatedTargetColumn = {
         ...targetColumn,
-        cards: [
-            ...targetColumn.cards,
-            ...cards,
-        ]
+        cards: [...targetColumn.cards, ...cards],
     };
 
-    columns[targetColumnIndex] = updatedTargetColumn
-}
+    columns[targetColumnIndex] = updatedTargetColumn;
+};

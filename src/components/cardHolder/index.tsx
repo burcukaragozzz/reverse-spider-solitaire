@@ -1,20 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import { CardBody } from "./styled";
+import { CardBody } from './styled';
 
 export type CardHolderProps = {
-  onClick?: VoidFunction;
-  imageUrl?: String;
+    onClick?: VoidFunction;
+    imageUrl?: string;
 };
 
-export const CardHolder: React.FC<CardHolderProps> = ({
-  children,
-  imageUrl,
-  onClick,
-}) => {
-  return (
-    <CardBody imageUrl={imageUrl} onClick={onClick}>
-      {children}
-    </CardBody>
-  );
+export const CardHolder: React.FC<CardHolderProps> = ({ children, imageUrl, onClick }) => {
+    return (
+        <CardBody imageUrl={imageUrl} onClick={onClick}>
+            {children}
+        </CardBody>
+    );
 };

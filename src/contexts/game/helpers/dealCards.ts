@@ -8,7 +8,7 @@ export const dealCards = (cards: ICard[]) => {
 
         const columns = chunks.map((cards, index) => ({
             id: index,
-            cards
+            cards,
         }));
 
         cards.slice(50, 54).forEach((card, index) => columns[index].cards.push(card));
@@ -20,8 +20,7 @@ export const dealCards = (cards: ICard[]) => {
         });
 
         return { columns, remainingCards };
-
     } catch (err) {
         console.log(err.message);
     }
-}
+};

@@ -13,14 +13,16 @@ module.exports = {
         },
     },
     extends: [
+        'react-app',
+        'react-app/jest',
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
         'plugin:prettier/recommended',
-        //   "react-app",
-        //   "react-app/jest"
     ],
     rules: {
-        // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-        // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+        'react/prop-types': 'off',
+        'react/react-in-jsx-scope': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
 };

@@ -1,3 +1,3 @@
-import { ISource } from "interfaces";
+import { ISource } from 'interfaces';
 
-export type ITarget = Pick<ISource, "column">;
+export type ITarget = Pick<ISource, 'column'>;

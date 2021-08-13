@@ -1,11 +1,11 @@
-import { render } from "test";
+import { render } from 'test';
 
-import { Wrapper } from "./index";
+import { Wrapper } from './index';
 
-describe("Wrapper component testing with testing-library", () => {
-  const component = render(<Wrapper />);
+describe('Wrapper component testing with testing-library', () => {
+    const component = render(<Wrapper />);
 
-  it("renders without crashing", () => {
-    expect(component).toBeTruthy();
-  });
+    it('renders without crashing', () => {
+        expect(component).toBeTruthy();
+    });
 });

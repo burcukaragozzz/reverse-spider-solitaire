@@ -1,11 +1,11 @@
-import { render } from "test";
+import { render } from 'test';
 
-import { Logo } from "./index";
+import { Logo } from './index';
 
-describe("Logo component testing with testing-library", () => {
-  const component = render(<Logo />);
+describe('Logo component testing with testing-library', () => {
+    const component = render(<Logo />);
 
-  it("renders without crashing", () => {
-    expect(component).toBeTruthy();
-  });
+    it('renders without crashing', () => {
+        expect(component).toBeTruthy();
+    });
 });

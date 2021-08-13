@@ -11,18 +11,19 @@ export const removeCardFromColumn = (source: ISource, columns: IColumn[]) => {
 
     //seçtiğim kartı dışarda bırakarak silmiş oluyorum
     // movingCards'ta bulunamayanlari filtrele.
-    const findInMovingCards = (card: ICard) => movingCards.find(movingCard => movingCard.id === card.id)
+    const findInMovingCards = (card: ICard) =>
+        movingCards.find((movingCard) => movingCard.id === card.id);
 
-    const updatedSourceCards = source.column.cards.filter((card) => !findInMovingCards(card))
+    const updatedSourceCards = source.column.cards.filter((card) => !findInMovingCards(card));
 
     //indexe göre column bul
-    const sourceColumnIndex = columns.findIndex((column) => column.id === source.column.id)
+    const sourceColumnIndex = columns.findIndex((column) => column.id === source.column.id);
 
     // yeni column oluştur
     const updatedSourceColumn = { ...source.column, cards: updatedSourceCards };
 
     // koleksiyonda aynı adrese yerleştir
-    columns[sourceColumnIndex] = updatedSourceColumn
+    columns[sourceColumnIndex] = updatedSourceColumn;
 
     return updatedSourceColumn;
-}
+};

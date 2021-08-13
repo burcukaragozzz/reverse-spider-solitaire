@@ -1,12 +1,12 @@
-import { ICard, IColumn } from "interfaces";
+import { ICard, IColumn } from 'interfaces';
 
 export const dealRemainingCards = (columns: IColumn[], remainingCards: ICard[][]) => {
     const [nextTurn, ...updatedRemainingCards] = remainingCards;
 
-    const nextTurnCards = nextTurn.map(card => ({
+    const nextTurnCards = nextTurn.map((card) => ({
         ...card,
-        isDown: false
-    }))
+        isDown: false,
+    }));
 
     const updatedColumns = columns.map((column, index) => ({
         ...column,
@@ -15,6 +15,6 @@ export const dealRemainingCards = (columns: IColumn[], remainingCards: ICard[][]
 
     return {
         columns: updatedColumns,
-        remainingCards: updatedRemainingCards
-    }
+        remainingCards: updatedRemainingCards,
+    };
 };

@@ -1,5 +1,4 @@
-export interface IButton
-    extends React.DetailedHTMLProps<
+export type IButton = React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
-    > { }
+>;
