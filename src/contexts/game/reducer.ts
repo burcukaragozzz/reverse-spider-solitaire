@@ -37,6 +37,11 @@ export const GameReducer: Reducer<IGameState, Action<GameActions>> = (state, act
                 ...state,
                 error: payload,
             };
+        case GameActions.SET_SUIT:
+            return {
+                ...state,
+                suit: payload,
+            };
         default:
             return state;
     }

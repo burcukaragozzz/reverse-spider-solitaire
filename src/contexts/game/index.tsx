@@ -23,6 +23,7 @@ export const GameProvider = (props) => {
         target: null,
         remainingCards: [],
         completedSequences: Array(8).fill(false),
+        suit: 'diamond',
     });
 
     const { source, columns, remainingCards, target, completedSequences } = state;

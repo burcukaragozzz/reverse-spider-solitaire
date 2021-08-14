@@ -1,11 +1,11 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 100px);
-  background: ${({ theme }) => theme.colors.backgroundGradient};
-  background-image: url("/images/background-img.png");
+  height:100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background: ${({ theme }) => theme.colors.backgroundGradient};
 `;

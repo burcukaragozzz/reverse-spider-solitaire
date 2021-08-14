@@ -6,3 +6,4 @@ export { Wrapper } from './wrapper';
 export { Card } from './card';
 export { CardHolder } from './cardHolder';
 export { TopContainer } from './topContainer';
+export { SuitCard } from './suitCard';
