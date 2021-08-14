@@ -1,17 +1,17 @@
 import { Dispatch } from 'react';
-import { ICard, IColumn, ISource, ITarget } from 'interfaces';
+import { Action, ICard, IColumn, ISource, ITarget } from 'interfaces';
 
 export interface IGameState {
     columns: IColumn[];
     source: ISource | null;
     target: ITarget | null;
     remainingCards: ICard[][];
-    completedSequences: ICard[][];
+    completedSequences: boolean[];
     error?: string;
 }
 
 export interface IGame extends IGameState {
-    dispatch: Dispatch<any>;
+    dispatch: Dispatch<Action<GameActions>>;
     setTargetSafely: (column: IColumn) => void;
     setSourceSafely: (column: IColumn, card: ICard) => void;
     startNextTurn: VoidFunction;
@@ -23,4 +23,5 @@ export enum GameActions {
     SET_TARGET,
     SET_COLUMNS_AND_REMAINING_CARDS,
     SET_ERROR,
+    COMPLETE_SEQUENCE,
 }

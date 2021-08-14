@@ -27,6 +27,11 @@ export const GameReducer: Reducer<IGameState, Action<GameActions>> = (state, act
                 ...state,
                 columns: payload,
             };
+        case GameActions.COMPLETE_SEQUENCE:
+            return {
+                ...state,
+                ...payload,
+            };
         case GameActions.SET_ERROR:
             return {
                 ...state,

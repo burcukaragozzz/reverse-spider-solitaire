@@ -5,8 +5,8 @@ import { ICard, IColumn, ISource, ITarget } from 'interfaces';
 import { GameContext } from './context';
 import { GameReducer } from './reducer';
 import {
-    removeCardFromColumn,
-    addCardToColumn,
+    removeCardsFromColumn,
+    addCardsToColumn,
     generateCards,
     flipLastCard,
     dealCards,
@@ -22,7 +22,7 @@ export const GameProvider = (props) => {
         source: null,
         target: null,
         remainingCards: [],
-        completedSequences: Array(8).fill([]),
+        completedSequences: Array(8).fill(false),
     });
 
     const { source, columns, remainingCards, target, completedSequences } = state;
@@ -99,13 +99,15 @@ export const GameProvider = (props) => {
     const setUpdatedColumns = () => {
         const columnsCopy = [...columns];
 
-        const updatedSourceColumn = removeCardFromColumn(source, columnsCopy);
+        const { id } = removeCardsFromColumn(source.column, source.cards, columnsCopy);
 
-        flipLastCard(updatedSourceColumn, columnsCopy);
+        flipLastCard(id, columnsCopy);
 
-        addCardToColumn(source.cards, target.column, columnsCopy);
+        const updatedTargetColumn = addCardsToColumn(target.column, source.cards, columnsCopy);
 
         dispatch({ type: GameActions.SET_COLUMNS, payload: columnsCopy });
+
+        return { updatedTargetColumn, columnsCopy };
     };
 
     const startNextTurn = () => {
@@ -115,12 +117,54 @@ export const GameProvider = (props) => {
         });
     };
 
+    const discardSequenceSafely = (updatedTargetColumn: IColumn, columnsCopy: IColumn[]) => {
+        const facedUpCards = updatedTargetColumn.cards.filter((card) => card.isDown === false);
+
+        const has13Cards = facedUpCards.length === 13;
+
+        if (has13Cards) {
+            const isSequence = checkIsSequence(facedUpCards);
+
+            if (isSequence) {
+                setTimeout(() => {
+                    const cleanedUpColumn = removeCardsFromColumn(
+                        updatedTargetColumn,
+                        facedUpCards,
+                        columnsCopy,
+                    );
+
+                    console.log({ cleanedUpColumn });
+
+                    flipLastCard(cleanedUpColumn.id, columnsCopy);
+
+                    const mostRecent = columnsCopy.find((col) => col.id === cleanedUpColumn.id);
+
+                    if (mostRecent) console.log({ mostRecent });
+
+                    const currentEmpt = completedSequences.indexOf(false);
+
+                    dispatch({
+                        type: GameActions.COMPLETE_SEQUENCE,
+                        payload: {
+                            columns: columnsCopy,
+                            completedSequences: completedSequences.map((_, index) =>
+                                index === currentEmpt ? true : false,
+                            ),
+                        },
+                    });
+                }, 600);
+            }
+        }
+    };
+
     const moveSelection = () => {
         if (target) {
             const canMove = checkCanMove();
 
             if (canMove) {
-                setUpdatedColumns();
+                const { updatedTargetColumn, columnsCopy } = setUpdatedColumns();
+
+                discardSequenceSafely(updatedTargetColumn, columnsCopy);
             } else {
                 setError('You cannot move!');
             }
@@ -138,22 +182,6 @@ export const GameProvider = (props) => {
         moveSelection();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [target]);
-
-    // const discardSequence = () => {};
-
-    // useEffect(() => {
-    //   const facedUpCards = target.column.cards.filter(
-    //     (card) => card.isDown === false
-    //   );
-
-    //   const isCount13 = facedUpCards.length === 13;
-
-    //   if (isCount13) {
-    //     const isSequence = checkIsSequence(facedUpCards);
-
-    //     isSequence && discardSequence();
-    //   }
-    // }, [columns]);
 
     const contextValue = {
         ...state,
