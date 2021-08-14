@@ -13,5 +13,6 @@ export const CardBody = styled.div`
       background-repeat: no-repeat;
       margin-left: -50px;
       border: 1px solid black;
+      box-shadow: none;
     `};
 `;

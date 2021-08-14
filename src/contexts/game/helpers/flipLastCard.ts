@@ -5,7 +5,11 @@ import { IColumn } from 'interfaces';
  * @param targetColumn Target column
  * @param columns Copy of all columns
  */
-export const flipLastCard = (targetColumn: IColumn, columns: IColumn[]) => {
+export const flipLastCard = (id: number, columns: IColumn[]) => {
+    const targetColumnIndex = columns.findIndex((column) => column.id === id);
+
+    const targetColumn = columns[targetColumnIndex];
+
     const updatedColumnCards = targetColumn.cards.map((card, index) => {
         const isLast = index === targetColumn.cards.length - 1;
 
@@ -17,9 +21,7 @@ export const flipLastCard = (targetColumn: IColumn, columns: IColumn[]) => {
             : card;
     });
 
-    const targetColumnIndex = columns.findIndex((column) => column.id === targetColumn.id);
-
-    const updatedSourceColumn = { ...targetColumn, cards: updatedColumnCards };
+    const updatedSourceColumn = { id, cards: updatedColumnCards };
 
     columns[targetColumnIndex] = updatedSourceColumn;
 };

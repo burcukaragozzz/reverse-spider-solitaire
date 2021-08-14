@@ -21,11 +21,7 @@ export const TopContainer = () => {
 
             <CompletedDeckCards>
                 {completedSequences.map((_, index) => (
-                    <CardHolder
-                        key={`c-${index}`}
-                        onClick={startNextTurn}
-                        imageUrl="/images/card_back.png"
-                    />
+                    <CardHolder key={`c-${index}`} />
                 ))}
             </CompletedDeckCards>
         </Container>

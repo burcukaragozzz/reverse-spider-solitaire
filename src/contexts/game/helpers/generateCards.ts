@@ -27,7 +27,7 @@ const getDisplayValue = (value: number) => {
     }
 };
 
-export const generateCards = () => {
+export const generateCards = (): ICard[] => {
     try {
         const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((value) => ({
             value,
