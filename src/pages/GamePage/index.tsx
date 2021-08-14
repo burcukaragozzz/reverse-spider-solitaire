@@ -2,12 +2,11 @@ import React from 'react';
 
 import { useGame } from 'hooks';
 import { ICard, IColumn } from 'interfaces';
-import GlobalStyle from 'styles/globalStyles';
-import { Wrapper, Header, Card, CardHolder, TopContainer } from 'components';
+import { Wrapper, Card, CardHolder, TopContainer } from 'components';
 
 import { GameArea, CardsWrapper, DeckContainer, CardContainer } from './styled';
 
-const Home: React.FC = () => {
+export const GamePage: React.FC = () => {
     const { columns, source, setTargetSafely, setSourceSafely } = useGame();
 
     const handleCardClick = (selectedColumn: IColumn, selectedCard: ICard) => {
@@ -20,8 +19,6 @@ const Home: React.FC = () => {
 
     return (
         <Wrapper>
-            <GlobalStyle />
-            <Header />
             <GameArea>
                 <TopContainer />
                 <CardsWrapper>
@@ -60,4 +57,3 @@ const Home: React.FC = () => {
         </Wrapper>
     );
 };
-export default Home;

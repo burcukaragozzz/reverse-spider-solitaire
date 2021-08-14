@@ -7,7 +7,8 @@ const dark: DefaultTheme = {
     colors: {
         ...common.colors,
         toggleBorder: '#556678',
-        gradient: 'linear-gradient(45deg, #4D536E, #FFFFFF)',
+        toggleGradient: 'linear-gradient(45deg, #4D536E, #FFFFFF)',
+        backgroundGradient: 'linear-gradient(45deg, #4D536E, #FFFFFF)',
         background: '#2F3138',
         headerBg: '#20232A',
         cardsBg: '#1A1C22',

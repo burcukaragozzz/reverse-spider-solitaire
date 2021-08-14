@@ -19,5 +19,3 @@ export const DeckContainer = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
-

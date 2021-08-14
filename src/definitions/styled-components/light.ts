@@ -7,9 +7,10 @@ const light: DefaultTheme = {
     colors: {
         ...common.colors,
         toggleBorder: '#ABB7C4',
-        gradient: 'linear-gradient(45deg, #FFFFFF, #AB423C)',
+        toggleGradient: 'linear-gradient(45deg, #FFFFFF, #AB423C)',
+        backgroundGradient: 'linear-gradient(45deg, #FFFFFF, #AB423C)',
         background: '#EFF1f5',
-        headerBg: '#37783C',
+        headerBg: '#8da8c1',
         cardsBg: '#FFFFFF',
         borderColor: '#BABABA',
         dodgerBlue: '#007BFF',

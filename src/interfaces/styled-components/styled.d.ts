@@ -6,7 +6,8 @@ type CommonColors = 'transparent' | 'darkGrey' | 'blackGrey' | 'white';
 type ExtendedColors =
     | CommonColors
     | 'toggleBorder'
-    | 'gradient'
+    | 'toggleGradient'
+    | 'backgroundGradient'
     | 'background'
     | 'headerBg'
     | 'cardsBg'

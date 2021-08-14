@@ -18,6 +18,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Game";
     height: 100vh;
   }
+
+  #root,
+  .App {
+    height: 100%;
+  }
 `;
 
 export default GlobalStyle;
