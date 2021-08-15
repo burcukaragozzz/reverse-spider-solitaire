@@ -5,7 +5,5 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height:100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background: ${({ theme }) => theme.colors.backgroundGradient};
+  background: ${({ theme }) => theme.colors.background};
 `;
