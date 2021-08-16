@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import { StyledThemeProvider } from 'definitions/styled-components';
 import GlobalStyle from 'styles/globalStyles';
 
@@ -11,16 +14,18 @@ function App(): JSX.Element {
     return (
         <GameProvider>
             <StyledThemeProvider>
-                <Router>
+                <DndProvider backend={HTML5Backend}>
                     <div className="App">
                         <GlobalStyle />
                         <Header />
-                        <Switch>
-                            <Route exact path="/" component={HomePage} />
-                            <Route exact path="/game" component={GamePage} />
-                        </Switch>
+                        <Router>
+                            <Switch>
+                                <Route exact path="/" component={HomePage} />
+                                <Route exact path="/game" component={GamePage} />
+                            </Switch>
+                        </Router>
                     </div>
-                </Router>
+                </DndProvider>
             </StyledThemeProvider>
         </GameProvider>
     );

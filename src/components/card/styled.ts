@@ -1,15 +1,17 @@
 import styled from "styled-components/macro";
 
+export const Container = styled.div`
+  `;
+
 export const CardBody = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   cursor: pointer;
+  border-radius: 6px;
   width: 7vw;
   height: 9.8vw;
-  border-radius: 6px;
-	background-color: white;
   margin-bottom: -7.5vw;
 
   &:hover {
@@ -24,6 +26,12 @@ export const CardBody = styled.div`
 `;
 
 export const CardImage = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const CardOverlay = styled.div`
+  position: absolute;
   width: 100%;
   height: 100%;
 `;
