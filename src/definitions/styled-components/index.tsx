@@ -40,3 +40,4 @@ export const StyledThemeProvider: React.FC = ({ children }) => {
 export * from './common';
 export * from './dark';
 export * from './light';
+export * from './shared';

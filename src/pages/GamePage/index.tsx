@@ -1,10 +1,32 @@
 import React from 'react';
+import { useDrop } from 'react-dnd';
 
 import { useGame } from 'hooks';
-import { ICard, IColumn } from 'interfaces';
-import { Wrapper, Card, CardHolder, TopContainer } from 'components';
+import { DragItem, ICard, IColumn, ISource, ITarget } from 'interfaces';
+import { Card, CardHolder, TopContainer } from 'components';
 
-import { GameArea, CardsWrapper, DeckContainer, CardContainer } from './styled';
+import { PageContainer, DeckContainer, CardsContainer } from './styled';
+
+import { CustomDragLayer } from 'components/customDragPreview';
+
+type ColumnProps = {
+    column: IColumn;
+};
+
+const Column: React.FC<ColumnProps> = ({ children, column }) => {
+    const { move } = useGame();
+
+    const [_, drop] = useDrop({
+        accept: DragItem.Card,
+        drop: (source: ISource) => {
+            const target: ITarget = { column };
+
+            move(source, target);
+        },
+    });
+
+    return <DeckContainer ref={drop}>{children}</DeckContainer>;
+};
 
 export const GamePage: React.FC = () => {
     const { columns, source, setTargetSafely, setSourceSafely } = useGame();
@@ -18,42 +40,37 @@ export const GamePage: React.FC = () => {
     };
 
     return (
-        <Wrapper>
-            <GameArea>
-                <TopContainer />
-                <CardsWrapper>
-                    {columns.map((column, index) => (
-                        <>
-                            {column.cards.length === 0 ? (
-                                <CardContainer>
-                                    <CardHolder />
-                                </CardContainer>
-                            ) : (
-                                <DeckContainer key={index + ' 2'}>
-                                    {column.cards.map((card) => (
-                                        <CardContainer
-                                            id={card.id}
-                                            key={card.id}
-                                            onClick={() => handleCardClick(column, card)}
-                                        >
-                                            <Card
-                                                card={card}
-                                                isSelected={
-                                                    !!source?.cards.find(
-                                                        (movingCard) => movingCard.id === card.id,
-                                                    )
-                                                }
-                                                isDown={card.isDown}
-                                                isHighlighted={card.isHighlighted}
-                                            />
-                                        </CardContainer>
-                                    ))}
-                                </DeckContainer>
-                            )}
-                        </>
-                    ))}
-                </CardsWrapper>
-            </GameArea>
-        </Wrapper>
+        <PageContainer>
+            <TopContainer />
+            <CustomDragLayer />
+            <CardsContainer>
+                {columns.map((column, index) => (
+                    <>
+                        {column.cards.length === 0 ? (
+                            <CardHolder />
+                        ) : (
+                            <Column column={column} key={index + '2'}>
+                                {column.cards.map((card) => (
+                                    <Card
+                                        id={card.id}
+                                        key={card.id}
+                                        onClick={() => handleCardClick(column, card)}
+                                        column={column}
+                                        card={card}
+                                        isSelected={
+                                            !!source?.cards.find(
+                                                (movingCard) => movingCard.id === card.id,
+                                            )
+                                        }
+                                        isDown={card.isDown}
+                                        isHighlighted={card.isHighlighted}
+                                    />
+                                ))}
+                            </Column>
+                        )}
+                    </>
+                ))}
+            </CardsContainer>
+        </PageContainer>
     );
 };
