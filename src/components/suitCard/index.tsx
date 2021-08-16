@@ -5,12 +5,13 @@ import { SuitBox, Suit } from './styled';
 export type Props = {
     suit: string;
     onClick: VoidFunction;
+    isSelected?: boolean;
 };
 
-export const SuitCard: React.FC<Props> = ({ suit, onClick }) => {
+export const SuitCard: React.FC<Props> = ({ suit, isSelected, onClick }) => {
     return (
         <SuitBox suit={suit} onClick={onClick}>
-            <Suit src={`/images/${suit}/${suit}_1.png`} />
+            <Suit isSelected={isSelected} src={`/images/${suit}/${suit}_1.png`} />
         </SuitBox>
     );
 };

@@ -12,9 +12,14 @@ export const Suit = styled.img`
     opacity: .8;
     transition: .5s; 
 
-    &:hover {
+    &:hover{
         cursor: pointer;
         opacity: 1;
         transform: scale(1.1);
     }
+
+    ${({ isSelected }) => isSelected && ` 
+        opacity: 1;
+        transform: scale(1.1);
+    `}
 `;
