@@ -12,7 +12,7 @@ import {
     dealCards,
     dealRemainingCards,
     checkIsSequence,
-    checkIsGreaterOneRank,
+    checkIsLessOneRank,
 } from './helpers';
 import { GameActions } from './types';
 
@@ -68,7 +68,7 @@ export const GameProvider = (props) => {
     };
 
     const setSourceSafely = (sourceColumn: IColumn, sourceCard: ICard) => {
-        const cards = getMovingCards(sourceColumn, sourceCard);
+        const cards = getRestOfTheCards(sourceColumn, sourceCard);
 
         const isSequence = checkIsSequence(cards);
 
@@ -79,30 +79,36 @@ export const GameProvider = (props) => {
         }
     };
 
-    const getMovingCards = (sourceColumn: IColumn, selectedCard: ICard) => {
-        const selectedCardIndex = sourceColumn.cards.findIndex(
-            (card) => selectedCard.id === card.id,
-        );
+    const getRestOfTheCards = (sourceColumn: IColumn, selectedCard: ICard) => {
+        const selectedCardIndex = sourceColumn.cards.findIndex(({ id }) => id === selectedCard.id);
 
         const movingCards = sourceColumn.cards.slice(selectedCardIndex);
 
         return movingCards;
     };
 
-    const checkCanMove = () => {
+    const getMovingCards = (column: IColumn, card: ICard) => {
+        const cards = getRestOfTheCards(column, card);
+
+        const isSequence = checkIsSequence(cards);
+
+        return isSequence ? cards : [];
+    };
+
+    const checkCanMove = (source: ISource, target: ITarget) => {
         const [targetCard] = target.column.cards.slice(-1);
 
-        const isContinous = checkIsGreaterOneRank(targetCard, source.cards[0]);
+        const isContinous = checkIsLessOneRank(targetCard, source.cards[0]);
 
         return isContinous;
     };
 
-    const setUpdatedColumns = () => {
+    const setUpdatedColumns = (source: ISource, target: ITarget) => {
         const columnsCopy = [...columns];
 
-        const { id } = removeCardsFromColumn(source.column, source.cards, columnsCopy);
+        const updatedSourceColumn = removeCardsFromColumn(source.column, source.cards, columnsCopy);
 
-        flipLastCard(id, columnsCopy);
+        flipLastCard(updatedSourceColumn.id, columnsCopy);
 
         const updatedTargetColumn = addCardsToColumn(target.column, source.cards, columnsCopy);
 
@@ -134,13 +140,7 @@ export const GameProvider = (props) => {
                         columnsCopy,
                     );
 
-                    console.log({ cleanedUpColumn });
-
                     flipLastCard(cleanedUpColumn.id, columnsCopy);
-
-                    const mostRecent = columnsCopy.find((col) => col.id === cleanedUpColumn.id);
-
-                    if (mostRecent) console.log({ mostRecent });
 
                     const currentEmpt = completedSequences.indexOf(false);
 
@@ -158,18 +158,21 @@ export const GameProvider = (props) => {
         }
     };
 
+    const move = (source: ISource, target: ITarget) => {
+        const canMove = checkCanMove(source, target);
+
+        if (canMove) {
+            const { updatedTargetColumn, columnsCopy } = setUpdatedColumns(source, target);
+
+            discardSequenceSafely(updatedTargetColumn, columnsCopy);
+        } else {
+            setError('You cannot move!');
+        }
+    };
+
     const moveSelection = () => {
         if (target) {
-            const canMove = checkCanMove();
-
-            if (canMove) {
-                const { updatedTargetColumn, columnsCopy } = setUpdatedColumns();
-
-                discardSequenceSafely(updatedTargetColumn, columnsCopy);
-            } else {
-                setError('You cannot move!');
-            }
-
+            move(source, target);
             setTarget(null);
             setSource(null);
         }
@@ -189,6 +192,8 @@ export const GameProvider = (props) => {
         startNextTurn,
         setTargetSafely,
         setSourceSafely,
+        getMovingCards,
+        move,
         dispatch,
     };
 

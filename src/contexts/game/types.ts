@@ -15,6 +15,8 @@ export interface IGame extends IGameState {
     dispatch: Dispatch<Action<GameActions>>;
     setTargetSafely: (column: IColumn) => void;
     setSourceSafely: (column: IColumn, card: ICard) => void;
+    getMovingCards: (column: IColumn, card: ICard) => ICard[];
+    move: (source: ISource, target: ITarget) => void;
     startNextTurn: VoidFunction;
 }
 
