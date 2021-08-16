@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
     position: relative;
-    height: 115px;
+    margin-bottom: 8%;
 `;
 
 export const RemCardsContainer = styled.div`
@@ -16,4 +16,4 @@ export const CompletedDeckCards = styled.div`
     right: 0;
     display: flex;
     gap: 10px;
-`
+`;

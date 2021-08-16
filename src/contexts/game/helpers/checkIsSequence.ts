@@ -1,14 +1,14 @@
 import { ICard } from 'interfaces';
 
-import { checkIsGreaterOneRank } from './checkIsGreaterOneRank';
+import { checkIsLessOneRank } from './checkIsLessOneRank';
 
 export const checkIsSequence = (cards: ICard[]) => {
     const { isSequence } = cards.reduce(
         (acc, curr) => {
-            const isGreater = acc?.prevCard ? checkIsGreaterOneRank(acc.prevCard, curr) : true;
+            const isSmall = acc?.prevCard ? checkIsLessOneRank(acc.prevCard, curr) : true;
 
             return {
-                isSequence: acc.isSequence && isGreater,
+                isSequence: acc.isSequence && isSmall,
                 prevCard: curr,
             };
         },
