@@ -5,4 +5,4 @@ export * from './removeCardsFromColumn';
 export * from './flipLastCard';
 export * from './dealRemainingCards';
 export * from './checkIsSequence';
-export * from './checkIsGreaterOneRank';
+export * from './checkIsLessOneRank';
