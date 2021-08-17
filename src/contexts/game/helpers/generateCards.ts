@@ -12,27 +12,9 @@ const generateCard = (params: Pick<ICard, 'id' | 'rank'>): ICard => ({
     isHighlighted: false,
 });
 
-const getDisplayValue = (value: number) => {
-    switch (value) {
-        case 1:
-            return 'A';
-        case 11:
-            return 'J';
-        case 12:
-            return 'Q';
-        case 13:
-            return 'K';
-        default:
-            return value.toString();
-    }
-};
-
 export const generateCards = (): ICard[] => {
     try {
-        const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((value) => ({
-            value,
-            displayValue: getDisplayValue(value),
-        }));
+        const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((value) => value);
 
         const cards = [];
 

@@ -3,7 +3,7 @@ import { useDrop } from 'react-dnd';
 
 import { useGame } from 'hooks';
 import { DragItem, ICard, IColumn, ISource, ITarget } from 'interfaces';
-import { Card, CardHolder, TopContainer, ControlPanel, CustomDragLayer, Wrapper } from 'components';
+import { Card, CardHolder, TopContainer, ControlPanel, CustomDragLayer } from 'components';
 
 import { PageContainer, DeckContainer, CardsContainer } from './styled';
 import { useTheme } from 'definitions/styled-components';
