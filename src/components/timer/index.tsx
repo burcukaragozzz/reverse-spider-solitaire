@@ -1,21 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const Timer: React.FC = () => {
-    const timerIdRef = useRef(0);
     const [seconds, setSeconds] = useState(0);
-
-    const startHandler = () => {
-        if (timerIdRef.current) {
-            return;
-        }
-        timerIdRef.current = window.setInterval(() => setSeconds(seconds + 1), 1000);
-    };
-
-    const stopHandler = () => {
-        clearInterval(timerIdRef.current);
-        timerIdRef.current = 0;
-        setSeconds(0);
-    };
 
     const prefix = (count: number) => {
         return count < 10 ? `0${count}` : count;
@@ -26,16 +12,12 @@ export const Timer: React.FC = () => {
     const hours = prefix(Math.floor(seconds / 60 / 60) % 24);
 
     useEffect(() => {
-        startHandler();
+        const timer = setInterval(() => {
+            setSeconds(seconds + 1);
+        }, 1000);
 
-        return stopHandler();
+        return () => clearInterval(timer);
     }, [seconds]);
 
-    return (
-        <div>
-            <span>{`${hours}:${mins}:${secs}`}</span>
-            {console.log('timer', `${hours}:${mins}:${secs}`)}
-            {console.log('timer', `${seconds}`)}
-        </div>
-    );
+    return <span style={{ minWidth: '100px' }}>{`${hours}:${mins}:${secs}`}</span>;
 };

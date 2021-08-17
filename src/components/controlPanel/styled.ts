@@ -36,5 +36,5 @@ export const Section = styled.div`
 `;
 
 export const Text = styled.span`
-
+    margin-right: 5px;
 `;

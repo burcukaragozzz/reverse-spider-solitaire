@@ -1,4 +1,5 @@
 import React from 'react';
+import { Timer } from 'components';
 
 import { PanelContainer, BackButton, Icon, RightSide, Section, Text } from './styled';
 
@@ -18,7 +19,7 @@ export const ControlPanel: React.FC = () => {
                 <Section>
                     <Icon src={'/icons/timer.png'} width={36} />
                     <Text>Timer :</Text>
-                    {'14:40:30'}
+                    <Timer />
                 </Section>
             </RightSide>
         </PanelContainer>
