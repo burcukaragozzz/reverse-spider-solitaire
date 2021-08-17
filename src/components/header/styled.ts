@@ -1,25 +1,25 @@
 import styled from "styled-components/macro";
 
 export const HeaderWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.headerBg};
-  padding: 10px 60px;
+    display: flex;
+    align-items: center;
+    background-color: ${({ theme }) => theme.colors.headerBg};
+    padding: 10px 60px;
 `;
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 
-  @media (max-width: 575px) {
-    min-width: 22rem;
-  }
+    @media (max-width: 575px) {
+        min-width: 22rem;
+    }
 `;
 
 export const HeaderText = styled.span`
-  font-size: 36px;
-  color: #ededed;
-  padding-left: 24px;
+    font-size: 36px;
+    color: #ededed;
+    padding-left: 24px;
 `;
