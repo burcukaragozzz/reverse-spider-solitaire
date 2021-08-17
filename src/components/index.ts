@@ -6,3 +6,6 @@ export { Card } from './card';
 export { CardHolder } from './cardHolder';
 export { TopContainer } from './topContainer';
 export { SuitCard } from './suitCard';
+export { CustomDragLayer } from './customDragPreview';
+export { ControlPanel } from './controlPanel';
+export { Wrapper } from './wrapper';

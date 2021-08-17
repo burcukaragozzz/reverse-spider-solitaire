@@ -23,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
   .App {
     height: 100%;
   }
+
+  a {
+    text-decoration: none;
+    z-index: 1;
+  }
 `;
 
 export default GlobalStyle;
