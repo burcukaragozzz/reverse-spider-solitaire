@@ -1,7 +1,7 @@
 // #region Global Imports
 import 'styled-components';
 // #endregion Global Imports
-type CommonColors = 'transparent' | 'darkGrey' | 'blackGrey' | 'white';
+type CommonColors = 'transparent' | 'lightGrey';
 
 type ExtendedColors =
     | CommonColors
@@ -10,9 +10,8 @@ type ExtendedColors =
     | 'backgroundGradient'
     | 'background'
     | 'headerBg'
-    | 'cardsBg'
-    | 'borderColor'
-    | 'dodgerBlue';
+    | 'buttonBg'
+    | 'borderColor';
 declare module 'styled-components' {
     export interface BaseTheme {
         colors: Record<CommonColors, string>;

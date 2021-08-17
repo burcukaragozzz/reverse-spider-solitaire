@@ -13,7 +13,7 @@ export const PanelContainer = styled.div`
 export const BackButton = styled(Button)`
     padding: 12px;
     font-size: 16px;
-    background-color: #59C7DB
+    background-color: #59C7DB;
 `;
 
 export const BackIcon = styled.img``;

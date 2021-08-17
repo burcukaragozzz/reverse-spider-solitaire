@@ -20,6 +20,6 @@ export const Container = styled.div`
 
 export const HeaderText = styled.span`
     font-size: 36px;
-    color: #ededed;
+    color: ${({ theme }) => theme.colors.lightGrey};
     padding-left: 24px;
 `;

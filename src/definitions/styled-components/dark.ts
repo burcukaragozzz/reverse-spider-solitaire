@@ -11,9 +11,8 @@ const dark: DefaultTheme = {
         backgroundGradient: 'linear-gradient(45deg, #4D536E, #FFFFFF)',
         background: '#2F3138',
         headerBg: '#20232A',
-        cardsBg: '#1A1C22',
+        buttonBg: '#42a14a',
         borderColor: '#FFFFFF',
-        dodgerBlue: '#0062CC',
     },
 };
 
