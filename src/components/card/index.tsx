@@ -29,7 +29,7 @@ export const Card: React.FC<Props> = ({
 
     const { getMovingCards, suit } = useGame();
 
-    const imageUrl = isDown ? '/images/card_back.png' : `/images/${suit}/${suit}_${rank.value}.png`;
+    const imageUrl = isDown ? '/images/card_back.png' : `/images/${suit}/${suit}_${rank}.png`;
 
     const [_, drag] = useDrag({
         type: DragItem.Card,
@@ -44,7 +44,7 @@ export const Card: React.FC<Props> = ({
 
     return (
         <Container ref={drag}>
-            {/* <CardOverlay /> */}
+            <CardOverlay />
 
             <CardBody id={id} isSelected={isSelected} isHighlighted onClick={onClick}>
                 <CardImage isDown={isDown} src={imageUrl} alt="card" />
