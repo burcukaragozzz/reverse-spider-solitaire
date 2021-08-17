@@ -1,7 +1,7 @@
 // #region Global Imports
 import 'styled-components';
 // #endregion Global Imports
-type CommonColors = 'transparent' | 'lightGrey';
+type CommonColors = 'transparent' | 'lightGrey' | 'white';
 
 type ExtendedColors =
     | CommonColors

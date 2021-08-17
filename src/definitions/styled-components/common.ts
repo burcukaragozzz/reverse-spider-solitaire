@@ -5,7 +5,8 @@ import { BaseTheme } from 'styled-components/macro';
 const common: BaseTheme = {
     colors: {
         transparent: 'transparent',
-        lightGrey: '#ededed',
+        lightGrey: '#EDEDED',
+        white: '#FFFFFF',
     },
 };
 
