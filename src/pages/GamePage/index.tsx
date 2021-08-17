@@ -3,11 +3,10 @@ import { useDrop } from 'react-dnd';
 
 import { useGame } from 'hooks';
 import { DragItem, ICard, IColumn, ISource, ITarget } from 'interfaces';
-import { Card, CardHolder, TopContainer } from 'components';
+import { Card, CardHolder, TopContainer, ControlPanel, CustomDragLayer, Wrapper } from 'components';
 
 import { PageContainer, DeckContainer, CardsContainer } from './styled';
-
-import { CustomDragLayer } from 'components/customDragPreview';
+import { useTheme } from 'definitions/styled-components';
 
 type ColumnProps = {
     column: IColumn;
@@ -39,8 +38,10 @@ export const GamePage: React.FC = () => {
         }
     };
 
+    const { themeName } = useTheme();
+
     return (
-        <PageContainer>
+        <PageContainer themeName={themeName}>
             <TopContainer />
             <CustomDragLayer />
             <CardsContainer>
@@ -71,6 +72,7 @@ export const GamePage: React.FC = () => {
                     </>
                 ))}
             </CardsContainer>
+            <ControlPanel />
         </PageContainer>
     );
 };

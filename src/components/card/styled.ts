@@ -10,9 +10,9 @@ export const CardBody = styled.div`
   border: 1px solid black;
   cursor: pointer;
   border-radius: 6px;
-  width: 7vw;
-  height: 9.8vw;
-  margin-bottom: -7.5vw;
+  width: 6.8vw;
+  height: 9.6vw;
+  margin-bottom: -8.0vw;
 
   &:hover {
     box-shadow: 4px 4px 10px rgb(247, 210, 0);

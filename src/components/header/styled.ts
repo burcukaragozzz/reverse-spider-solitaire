@@ -4,7 +4,6 @@ export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.headerBg};
-  border-bottom: 1px solid #243946;
   padding: 10px 60px;
 `;
 
@@ -21,6 +20,6 @@ export const Container = styled.div`
 
 export const HeaderText = styled.span`
   font-size: 36px;
-  color: ${({ theme }) => theme.colors.white};
+  color: #ededed;
   padding-left: 24px;
 `;

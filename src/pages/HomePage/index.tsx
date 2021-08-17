@@ -6,9 +6,11 @@ import { Button, SuitCard } from 'components';
 import { GameActions } from 'contexts/game/types';
 
 import { PageContainer, Menu, SuitsContainer } from './styled';
+import { useTheme } from 'definitions/styled-components';
 
 export const HomePage: React.FC = () => {
     const { dispatch } = useGame();
+    const { themeName } = useTheme();
 
     const suits = ['spade', 'diamond', 'club', 'heart'];
 
@@ -19,7 +21,7 @@ export const HomePage: React.FC = () => {
     };
 
     return (
-        <PageContainer>
+        <PageContainer themeName={themeName}>
             <Menu>
                 <SuitsContainer>
                     {suits.map((suit) => (

@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import { FullPageView } from 'definitions/styled-components';
 
-export const PageContainer = styled(FullPageView)`
+export const PageContainer = styled(FullPageView)<{ themeName: string }>`
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -6,11 +6,11 @@ import { common } from './common';
 const light: DefaultTheme = {
     colors: {
         ...common.colors,
-        toggleBorder: '#ABB7C4',
-        toggleGradient: 'linear-gradient(45deg, #FFFFFF, #AB423C)',
+        toggleBorder: '#45b06c',
+        toggleGradient: 'linear-gradient(45deg, #ededed, #76c292)',
         backgroundGradient: 'linear-gradient(45deg, #FFFFFF, #AB423C)',
         background: '#EFF1f5',
-        headerBg: '#8da8c1',
+        headerBg: '#318c52',
         cardsBg: '#FFFFFF',
         borderColor: '#BABABA',
         dodgerBlue: '#007BFF',
