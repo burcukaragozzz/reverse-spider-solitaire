@@ -17,7 +17,9 @@ export const HomePage: React.FC = () => {
     const [selectedSuit, setSuit] = useState('');
 
     const startGameWithSuit = () => {
-        dispatch({ type: GameActions.SET_SUIT, payload: selectedSuit });
+        selectedSuit
+            ? dispatch({ type: GameActions.SET_SUIT, payload: selectedSuit })
+            : alert('suit seç bakalım aslan parçası');
     };
 
     return (
@@ -34,7 +36,7 @@ export const HomePage: React.FC = () => {
                     ))}
                 </SuitsContainer>
 
-                <Link to={`/game`}>
+                <Link to={selectedSuit ? `/game` : `/`}>
                     <Button onClick={() => startGameWithSuit()}>Start Game</Button>
                 </Link>
             </Menu>

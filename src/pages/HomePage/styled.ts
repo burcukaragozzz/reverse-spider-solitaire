@@ -15,6 +15,7 @@ export const Menu = styled.div`
    justify-content: center;
    align-items: center;
    width: 100%;
+   z-index: 2;
 `;
 
 export const SuitsContainer = styled.div`
