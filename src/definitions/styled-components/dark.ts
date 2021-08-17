@@ -13,6 +13,7 @@ const dark: DefaultTheme = {
         headerBg: '#20232A',
         buttonBg: '#2A662F',
         borderColor: '#FFFFFF',
+        textColor: '#EDEDED',
     },
 };
 

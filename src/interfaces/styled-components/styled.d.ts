@@ -11,7 +11,8 @@ type ExtendedColors =
     | 'background'
     | 'headerBg'
     | 'buttonBg'
-    | 'borderColor';
+    | 'borderColor'
+    | 'textColor';
 declare module 'styled-components' {
     export interface BaseTheme {
         colors: Record<CommonColors, string>;

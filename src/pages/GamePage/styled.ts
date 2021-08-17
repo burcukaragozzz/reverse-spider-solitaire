@@ -9,8 +9,9 @@ export const CardsContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5% 0 10%;
+    padding: 4% 0 10%;
     z-index: 1;
+    margin-bottom: 50px;
 `;
 
 export const DeckContainer = styled.div`
