@@ -41,10 +41,6 @@ export const GameProvider = (props) => {
         });
     };
 
-    const setError = (error: string) => {
-        dispatch({ type: GameActions.SET_ERROR, payload: error });
-    };
-
     const setSource = (source: ISource | null) => {
         dispatch({
             type: GameActions.SET_SOURCE,
@@ -75,7 +71,7 @@ export const GameProvider = (props) => {
         if (isSequence) {
             setSource({ cards, column: sourceColumn });
         } else {
-            setError('Not a sequence!');
+            alert('Not a sequence!');
         }
     };
 
@@ -166,7 +162,7 @@ export const GameProvider = (props) => {
 
             discardSequenceSafely(updatedTargetColumn, columnsCopy);
         } else {
-            setError('You cannot move!');
+            alert('You cannot move!');
         }
     };
 

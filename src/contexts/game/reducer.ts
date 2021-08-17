@@ -33,11 +33,6 @@ export const GameReducer: Reducer<IGameState, Action<GameActions>> = (state, act
                 columns: payload.columns,
                 completedSequences: payload.completedSequences,
             };
-        case GameActions.SET_ERROR:
-            return {
-                ...state,
-                error: payload,
-            };
         case GameActions.SET_SUIT:
             return {
                 ...state,
