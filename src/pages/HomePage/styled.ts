@@ -24,5 +24,9 @@ export const SuitsContainer = styled.div`
     margin-bottom: 60px;
 `;
 
+export const ButtonsContainer = styled.div`
+    display: flex;
+    gap: 20px;
+`;
 
 

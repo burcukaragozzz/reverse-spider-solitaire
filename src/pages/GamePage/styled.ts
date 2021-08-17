@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 import { FullPageView } from 'definitions/styled-components';
 
 export const PageContainer = styled(FullPageView)<{themeName: string}>`
+    position: relative;
     padding: 24px;
 `;
 

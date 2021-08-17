@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useGame } from 'hooks';
-import { Button, SuitCard } from 'components';
+import { Button, Modal, SuitCard } from 'components';
 import { GameActions } from 'contexts/game/types';
 
-import { PageContainer, Menu, SuitsContainer } from './styled';
+import { PageContainer, Menu, SuitsContainer, ButtonsContainer } from './styled';
 import { useTheme } from 'definitions/styled-components';
 
 export const HomePage: React.FC = () => {
@@ -15,11 +15,12 @@ export const HomePage: React.FC = () => {
     const suits = ['spade', 'diamond', 'club', 'heart'];
 
     const [selectedSuit, setSuit] = useState('');
+    const [isOpenModel, setIsOpenModal] = useState(false);
 
     const startGameWithSuit = () => {
         selectedSuit
             ? dispatch({ type: GameActions.SET_SUIT, payload: selectedSuit })
-            : alert('suit seç bakalım aslan parçası');
+            : setIsOpenModal(true);
     };
 
     return (
@@ -36,9 +37,16 @@ export const HomePage: React.FC = () => {
                     ))}
                 </SuitsContainer>
 
-                <Link to={selectedSuit ? `/game` : `/`}>
-                    <Button onClick={() => startGameWithSuit()}>Start Game</Button>
-                </Link>
+                <ButtonsContainer>
+                    <Link to={selectedSuit ? `/game` : `/`}>
+                        <Button onClick={() => startGameWithSuit()}>Start Game</Button>
+                    </Link>
+                </ButtonsContainer>
+                {isOpenModel && (
+                    <Modal title="Welcome" onClick={() => setIsOpenModal(false)}>
+                        Please select the suit you want to continue to start the game.
+                    </Modal>
+                )}
             </Menu>
         </PageContainer>
     );

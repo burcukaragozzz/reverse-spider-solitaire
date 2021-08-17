@@ -8,3 +8,5 @@ export { TopContainer } from './topContainer';
 export { SuitCard } from './suitCard';
 export { CustomDragLayer } from './customDragPreview';
 export { ControlPanel } from './controlPanel';
+export { Modal } from './modal';
+export { Timer } from './timer';
