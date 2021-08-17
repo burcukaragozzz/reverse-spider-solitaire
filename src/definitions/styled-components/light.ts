@@ -14,6 +14,7 @@ const light: DefaultTheme = {
         buttonBg: '#42A14A',
         borderColor: '#BABABA',
         textColor: '#484B57',
+        modalBg: '#F5F7FA',
     },
 };
 

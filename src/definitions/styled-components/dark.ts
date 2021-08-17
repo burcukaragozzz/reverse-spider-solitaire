@@ -14,6 +14,7 @@ const dark: DefaultTheme = {
         buttonBg: '#2A662F',
         borderColor: '#FFFFFF',
         textColor: '#EDEDED',
+        modalBg: '#20232A',
     },
 };
 

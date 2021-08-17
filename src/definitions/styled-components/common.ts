@@ -7,6 +7,8 @@ const common: BaseTheme = {
         transparent: 'transparent',
         lightGrey: '#EDEDED',
         white: '#FFFFFF',
+        green: '#318C52',
+        lightGreen: '#91BFA2',
     },
 };
 
