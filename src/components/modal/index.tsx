@@ -1,20 +1,25 @@
 import { Button } from 'components';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-import { ModalContainer, Header, ModalWrapper, Content } from './styled';
+import { ModalContainer, Header, ModalWrapper, Content, ButtonContainer } from './styled';
 
 export type IModal = {
-    onClick?: VoidFunction;
+    onClick: VoidFunction;
     title?: string;
+    buttonLabel?: string;
+    closeButton?: ReactNode;
 };
 
-export const Modal: React.FC<IModal> = ({ children, onClick, title }) => {
+export const Modal: React.FC<IModal> = ({ children, onClick, title, buttonLabel, closeButton }) => {
     return (
         <ModalWrapper>
-            <ModalContainer onClick={onClick}>
+            <ModalContainer>
                 <Header>{title}</Header>
                 <Content>{children}</Content>
-                <Button>OK</Button>
+                <ButtonContainer>
+                    <Button onClick={onClick}>{buttonLabel ? buttonLabel : 'OK'}</Button>
+                    {closeButton}
+                </ButtonContainer>
             </ModalContainer>
         </ModalWrapper>
     );
