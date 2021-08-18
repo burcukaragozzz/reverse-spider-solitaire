@@ -8,7 +8,7 @@ import GlobalStyle from 'styles/globalStyles';
 import { GameProvider } from 'contexts';
 
 import { Header } from 'components';
-import { HomePage, GamePage } from 'pages';
+import { HomePage, GamePage, RulesPage } from 'pages';
 
 function App(): JSX.Element {
     return (
@@ -22,6 +22,7 @@ function App(): JSX.Element {
                             <Switch>
                                 <Route exact path="/" component={HomePage} />
                                 <Route exact path="/game" component={GamePage} />
+                                <Route exact path="/rules" component={RulesPage} />
                             </Switch>
                         </Router>
                     </div>
