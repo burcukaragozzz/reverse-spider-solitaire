@@ -50,7 +50,7 @@ export const HomePage: React.FC = () => {
                 </Link>
 
                 {isOpenSelectSuitModel && (
-                    <Modal title="Welcome" onClick={() => setIsOpenSelectSuitModel(false)}>
+                    <Modal title="Welcome" onConfirm={() => setIsOpenSelectSuitModel(false)}>
                         Please select the suit you want to continue to start the game.
                     </Modal>
                 )}
