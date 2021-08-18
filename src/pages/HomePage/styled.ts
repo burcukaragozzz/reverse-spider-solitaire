@@ -1,12 +1,11 @@
 import styled from "styled-components/macro";
-import { FullPageView } from 'definitions/styled-components';
+import { FullPageView, TransparentButton } from 'definitions/styled-components';
 
 export const PageContainer = styled(FullPageView)<{ themeName: string }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 24px;
-    height: 100%;
 `;
 
 export const Menu = styled.div`
@@ -29,4 +28,14 @@ export const ButtonsContainer = styled.div`
     gap: 20px;
 `;
 
+export const RulesButton = styled(TransparentButton)`
+    position: absolute;
+    bottom: 0;
+    right: 3%;
+`;
+
+export const Icon = styled.img`
+    margin-right: 5px;
+    transform: scaleX(-1);
+`;
 

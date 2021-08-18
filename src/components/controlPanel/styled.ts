@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-import { Button } from "components";
 
 export const PanelContainer = styled.div`
     display: flex;
@@ -9,14 +8,8 @@ export const PanelContainer = styled.div`
     bottom: 0;
     display: flex;
     width: 100%;
-    padding: 20px 24px; 
-`;
-
-export const BackButton = styled(Button)`
-    padding: 12px;
-    font-size: 16px;
-    background-color: ${({ theme }) => theme.colors.transparent};
-    color: ${({ theme }) => theme.colors.textColor};
+    padding: 8px 24px; 
+    font-size: 20px;
 `;
 
 export const Icon = styled.img`
