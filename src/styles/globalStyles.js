@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
     @font-face {
         font-family: "Game";
-        src: url(/fonts/Slackey-Regular.ttf) format('truetype');
+        src: url(/fonts/Gameboi95.ttf) format('truetype');
     }
 
     body {
