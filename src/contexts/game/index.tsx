@@ -123,7 +123,7 @@ export const GameProvider = (props) => {
     const discardSequenceSafely = (updatedTargetColumn: IColumn, columnsCopy: IColumn[]) => {
         const facedUpCards = updatedTargetColumn.cards.filter((card) => card.isDown === false);
 
-        const has13Cards = facedUpCards.length === 13;
+        const has13Cards = facedUpCards.length >= 13;
 
         if (has13Cards) {
             const isSequence = checkIsSequence(facedUpCards);

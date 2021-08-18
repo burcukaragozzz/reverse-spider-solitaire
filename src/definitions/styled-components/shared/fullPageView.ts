@@ -4,7 +4,7 @@ export const FullPageView = styled.div<{ themeName: string }>`
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     background: ${({ theme }) => theme.colors.background};
 
 
