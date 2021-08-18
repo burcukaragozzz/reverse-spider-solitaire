@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Button, Modal, Timer } from 'components';
+import { TransparentButton } from 'definitions/styled-components';
 
-import { PanelContainer, BackButton, Icon, RightSide, Section, Text } from './styled';
+import { PanelContainer, Icon, RightSide, Section, Text } from './styled';
 
 export const ControlPanel: React.FC = () => {
     const [isOpenModel, setIsOpenModal] = useState(false);
@@ -13,14 +14,14 @@ export const ControlPanel: React.FC = () => {
         <Link to={isExit && '/'}>
             <>
                 <PanelContainer>
-                    <BackButton
+                    <TransparentButton
                         onClick={() => {
                             setIsOpenModal(true);
                         }}
                     >
                         <Icon src={'/icons/left-arrow.png'} width={36} />
                         Back Home
-                    </BackButton>
+                    </TransparentButton>
 
                     <RightSide>
                         <Section>

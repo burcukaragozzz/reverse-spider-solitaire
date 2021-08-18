@@ -21,7 +21,7 @@ export const ModalContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.modalBg};
     box-shadow: 1px 1px 3px  ${({ theme }) => theme.colors.lightGreen};
     color: ${({ theme }) => theme.colors.textColor};
-    padding: 10px 60px;
+    padding: 25px 60px;
     min-height: 30%;
     min-width: 30%;
     border-radius: 8px;
@@ -29,6 +29,7 @@ export const ModalContainer = styled.div`
 
 export const Header = styled.span`
     font-size: 22px;
+    margin-bottom: 8px;
     width: 100%;
 `;
 
@@ -39,4 +40,5 @@ export const ButtonContainer = styled.span`
 
 export const Content = styled.div`
     margin-bottom: 30px;
+    font-size: 18px;
 `;

@@ -4,7 +4,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.headerBg};
-    padding: 10px 60px;
+    padding: 10px 20px;
 `;
 
 export const Container = styled.div`
