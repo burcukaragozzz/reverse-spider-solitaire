@@ -43,6 +43,10 @@ export const GameProvider = (props) => {
         });
     };
 
+    const setError = (error: string) => {
+        dispatch({ type: GameActions.SET_ERROR, payload: error });
+    };
+
     const setSource = (source: ISource | null) => {
         dispatch({
             type: GameActions.SET_SOURCE,
@@ -73,7 +77,7 @@ export const GameProvider = (props) => {
         if (isSequence) {
             setSource({ cards, column: sourceColumn });
         } else {
-            alert('Not a sequence!');
+            setError('Not a sequence!');
         }
     };
 
@@ -120,7 +124,8 @@ export const GameProvider = (props) => {
     const startNextTurn = () => {
         const hasEmptyColumn = columns.find((column) => column.cards.length === 0);
 
-        if (hasEmptyColumn) return alert('dağıtamazsın anlasana be ');
+        if (hasEmptyColumn)
+            return setError('There must be at least one card in each tableau column.');
 
         dispatch({
             type: GameActions.SET_COLUMNS_AND_REMAINING_CARDS,
@@ -175,7 +180,7 @@ export const GameProvider = (props) => {
 
             discardSequenceSafely(updatedTargetColumn, columnsCopy);
         } else {
-            alert('You cannot move!');
+            setError('You cannot move!');
         }
     };
 

@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDrop } from 'react-dnd';
 
 import { useGame } from 'hooks';
 import { DragItem, ICard, IColumn, ISource, ITarget } from 'interfaces';
-import { Card, CardHolder, TopContainer, ControlPanel, CustomDragLayer } from 'components';
+import { Card, CardHolder, TopContainer, ControlPanel, CustomDragLayer, Modal } from 'components';
 
 import { PageContainer, DeckContainer, CardsContainer } from './styled';
-import { useTheme } from 'definitions/styled-components';
 
 type ColumnProps = {
     column: IColumn;
@@ -28,7 +27,8 @@ const Column: React.FC<ColumnProps> = ({ children, column }) => {
 };
 
 export const GamePage: React.FC = () => {
-    const { columns, source, setTargetSafely, setSourceSafely } = useGame();
+    const { columns, source, setTargetSafely, setSourceSafely, error } = useGame();
+    const [isCloseModal, setIsCloseModal] = useState(true);
 
     const handleCardClick = (selectedColumn: IColumn, selectedCard?: ICard) => {
         if (source) {
@@ -69,6 +69,11 @@ export const GamePage: React.FC = () => {
                 ))}
             </CardsContainer>
             <ControlPanel />
+            {error && isCloseModal && (
+                <Modal title="Warning" onConfirm={() => setIsCloseModal(false)}>
+                    {error}
+                </Modal>
+            )}
         </PageContainer>
     );
 };

@@ -7,6 +7,7 @@ export interface IGameState {
     target: ITarget | null;
     remainingCards: ICard[][];
     completedSequences: number[];
+    error?: string;
     suit: string;
     score: number;
 }
@@ -27,4 +28,5 @@ export enum GameActions {
     SET_COLUMNS_AND_REMAINING_CARDS,
     COMPLETE_SEQUENCE,
     SET_SUIT,
+    SET_ERROR,
 }
