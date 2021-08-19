@@ -1,6 +1,6 @@
 import { ICard } from 'interfaces';
 
-import { checkIsLessOneRank } from './checkIsLessOneRank';
+import { checkIsLessOneRank } from '../checkIsLessOneRank';
 
 export const checkIsSequence = (cards: ICard[]) => {
     const { isSequence } = cards.reduce(
