@@ -6,8 +6,9 @@ export interface IGameState {
     source: ISource | null;
     target: ITarget | null;
     remainingCards: ICard[][];
-    completedSequences: boolean[];
+    completedSequences: number[];
     suit: string;
+    score: number;
 }
 
 export interface IGame extends IGameState {

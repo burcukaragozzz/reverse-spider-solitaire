@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { useGame } from 'hooks';
 import { Modal, Timer } from 'components';
 import { TransparentButton } from 'definitions/styled-components';
 
 import { PanelContainer, Icon, RightSide, Section, Text } from './styled';
 
 export const ControlPanel: React.FC = () => {
+    const { score } = useGame();
     const [isOpenModel, setIsOpenModal] = useState(false);
 
     const history = useHistory();
@@ -26,8 +28,7 @@ export const ControlPanel: React.FC = () => {
                 <RightSide>
                     <Section>
                         <Icon src={'/icons/award.png'} width={36} />
-                        <Text>Score :</Text>
-                        {'65'}
+                        <Text>{score}</Text>
                     </Section>
                     <Section>
                         <Icon src={'/icons/timer.png'} width={36} />

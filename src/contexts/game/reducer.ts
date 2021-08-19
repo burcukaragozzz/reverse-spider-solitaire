@@ -30,8 +30,7 @@ export const GameReducer: Reducer<IGameState, Action<GameActions>> = (state, act
         case GameActions.COMPLETE_SEQUENCE:
             return {
                 ...state,
-                columns: payload.columns,
-                completedSequences: payload.completedSequences,
+                ...payload,
             };
         case GameActions.SET_SUIT:
             return {
