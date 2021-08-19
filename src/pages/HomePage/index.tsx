@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { useGame } from 'hooks';
 import { Button, Modal, SuitCard } from 'components';
 import { GameActions } from 'contexts/game/types';
 
 import { PageContainer, Menu, SuitsContainer, ButtonsContainer, RulesButton, Icon } from './styled';
-import { useTheme } from 'definitions/styled-components';
 
 export const HomePage: React.FC = () => {
     const { dispatch } = useGame();
-    const { themeName } = useTheme();
+    const history = useHistory();
 
     const suits = ['spade', 'diamond', 'club', 'heart'];
 
@@ -21,10 +20,12 @@ export const HomePage: React.FC = () => {
         selectedSuit
             ? dispatch({ type: GameActions.SET_SUIT, payload: selectedSuit })
             : setIsOpenSelectSuitModel(true);
+
+        history.push(selectedSuit ? `/game` : `/`);
     };
 
     return (
-        <PageContainer themeName={themeName}>
+        <PageContainer>
             <Menu>
                 <SuitsContainer>
                     {suits.map((suit) => (
@@ -38,9 +39,7 @@ export const HomePage: React.FC = () => {
                 </SuitsContainer>
 
                 <ButtonsContainer>
-                    <Link to={selectedSuit ? `/game` : `/`}>
-                        <Button onClick={() => startGameWithSuit()}>Start Game</Button>
-                    </Link>
+                    <Button onClick={() => startGameWithSuit()}>Start Game</Button>
                 </ButtonsContainer>
                 <Link to={'/rules'}>
                     <RulesButton>
@@ -48,13 +47,13 @@ export const HomePage: React.FC = () => {
                         Rules
                     </RulesButton>
                 </Link>
-
-                {isOpenSelectSuitModel && (
-                    <Modal title="Welcome" onConfirm={() => setIsOpenSelectSuitModel(false)}>
-                        Please select the suit you want to continue to start the game.
-                    </Modal>
-                )}
             </Menu>
+
+            {isOpenSelectSuitModel && (
+                <Modal title="Welcome" onConfirm={() => setIsOpenSelectSuitModel(false)}>
+                    Please select the suit you want to continue to start the game.
+                </Modal>
+            )}
         </PageContainer>
     );
 };

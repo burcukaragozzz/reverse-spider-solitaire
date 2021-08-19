@@ -30,7 +30,7 @@ const Column: React.FC<ColumnProps> = ({ children, column }) => {
 export const GamePage: React.FC = () => {
     const { columns, source, setTargetSafely, setSourceSafely } = useGame();
 
-    const handleCardClick = (selectedColumn: IColumn, selectedCard: ICard) => {
+    const handleCardClick = (selectedColumn: IColumn, selectedCard?: ICard) => {
         if (source) {
             setTargetSafely(selectedColumn);
         } else {
@@ -38,38 +38,34 @@ export const GamePage: React.FC = () => {
         }
     };
 
-    const { themeName } = useTheme();
-
     return (
-        <PageContainer themeName={themeName}>
+        <PageContainer>
             <TopContainer />
             <CustomDragLayer />
             <CardsContainer>
                 {columns.map((column, index) => (
-                    <>
+                    <Column column={column} key={index + '2'}>
                         {column.cards.length === 0 ? (
-                            <CardHolder />
+                            <CardHolder onClick={() => handleCardClick(column)} />
                         ) : (
-                            <Column column={column} key={index + '2'}>
-                                {column.cards.map((card) => (
-                                    <Card
-                                        id={card.id}
-                                        key={card.id}
-                                        onClick={() => handleCardClick(column, card)}
-                                        column={column}
-                                        card={card}
-                                        isSelected={
-                                            !!source?.cards.find(
-                                                (movingCard) => movingCard.id === card.id,
-                                            )
-                                        }
-                                        isDown={card.isDown}
-                                        isHighlighted={card.isHighlighted}
-                                    />
-                                ))}
-                            </Column>
+                            column.cards.map((card) => (
+                                <Card
+                                    id={card.id}
+                                    key={card.id}
+                                    onClick={() => handleCardClick(column, card)}
+                                    column={column}
+                                    card={card}
+                                    isSelected={
+                                        !!source?.cards.find(
+                                            (movingCard) => movingCard.id === card.id,
+                                        )
+                                    }
+                                    isDown={card.isDown}
+                                    isHighlighted={card.isHighlighted}
+                                />
+                            ))
                         )}
-                    </>
+                    </Column>
                 ))}
             </CardsContainer>
             <ControlPanel />

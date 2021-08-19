@@ -18,6 +18,6 @@ export const FullPageView = styled.div<{ themeName: string }>`
         background-image: url('/images/bg-img.png');
         background-size: cover;
         background-repeat: no-repeat;
-        opacity: ${({ themeName }) => (themeName === 'light' ? '.2' : '.8')}}
+        opacity: ${({ theme }) => (theme.name === 'light' ? '.2' : '.8')}}
     }
 `;

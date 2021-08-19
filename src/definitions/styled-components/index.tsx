@@ -12,7 +12,14 @@ export const ThemeContext = React.createContext({
 export const useTheme = () => {
     const { theme, toggle } = React.useContext(ThemeContext);
 
-    return { theme: theme === 'light' ? light : dark, toggle, themeName: theme };
+    return {
+        theme: {
+            ...(theme === 'light' ? light : dark),
+            name: theme,
+        },
+        toggle,
+        themeName: theme,
+    };
 };
 
 export const StyledThemeProvider: React.FC = ({ children }) => {
@@ -32,7 +39,14 @@ export const StyledThemeProvider: React.FC = ({ children }) => {
 
     return (
         <ThemeContext.Provider value={values}>
-            <ThemeProvider theme={theme === 'light' ? light : dark}>{children}</ThemeProvider>
+            <ThemeProvider
+                theme={{
+                    ...(theme === 'light' ? light : dark),
+                    name: theme,
+                }}
+            >
+                {children}
+            </ThemeProvider>
         </ThemeContext.Provider>
     );
 };
