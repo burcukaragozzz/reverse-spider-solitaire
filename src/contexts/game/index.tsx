@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import { shuffle } from 'lodash';
+
 import { ICard, IColumn, ISource, ITarget } from 'interfaces';
 
 import { GameContext } from './context';
@@ -22,8 +23,9 @@ export const GameProvider = (props) => {
         source: null,
         target: null,
         remainingCards: [],
-        completedSequences: Array(8).fill(false),
+        completedSequences: Array(8).fill(0),
         suit: 'diamond',
+        score: 0,
     });
 
     const { source, columns, remainingCards, target, completedSequences } = state;
@@ -94,6 +96,8 @@ export const GameProvider = (props) => {
     const checkCanMove = (source: ISource, target: ITarget) => {
         const [targetCard] = target.column.cards.slice(-1);
 
+        if (!targetCard) return true;
+
         const isContinous = checkIsLessOneRank(targetCard, source.cards[0]);
 
         return isContinous;
@@ -114,6 +118,10 @@ export const GameProvider = (props) => {
     };
 
     const startNextTurn = () => {
+        const hasEmptyColumn = columns.find((column) => column.cards.length === 0);
+
+        if (hasEmptyColumn) return alert('dağıtamazsın anlasana be ');
+
         dispatch({
             type: GameActions.SET_COLUMNS_AND_REMAINING_CARDS,
             payload: dealRemainingCards(columns, remainingCards),
@@ -138,15 +146,20 @@ export const GameProvider = (props) => {
 
                     flipLastCard(cleanedUpColumn.id, columnsCopy);
 
-                    const currentEmpt = completedSequences.indexOf(false);
+                    const currentEmpty = completedSequences.indexOf(0);
+
+                    const updatedCompletions = completedSequences.map((completion, index) =>
+                        index === currentEmpty ? 1 : completion,
+                    );
+
+                    const score = updatedCompletions.filter(Boolean).length * 65;
 
                     dispatch({
                         type: GameActions.COMPLETE_SEQUENCE,
                         payload: {
                             columns: columnsCopy,
-                            completedSequences: completedSequences.map((_, index) =>
-                                index === currentEmpt ? true : false,
-                            ),
+                            completedSequences: updatedCompletions,
+                            score,
                         },
                     });
                 }, 600);
