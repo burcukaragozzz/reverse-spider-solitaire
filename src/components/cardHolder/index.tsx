@@ -5,12 +5,9 @@ import { CardBody } from './styled';
 export type CardHolderProps = {
     onClick?: VoidFunction;
     imageUrl?: string;
+    style?: React.CSSProperties;
 };
 
-export const CardHolder: React.FC<CardHolderProps> = ({ children, imageUrl, onClick }) => {
-    return (
-        <CardBody imageUrl={imageUrl} onClick={onClick}>
-            {children}
-        </CardBody>
-    );
+export const CardHolder: React.FC<CardHolderProps> = ({ children, ...props }) => {
+    return <CardBody {...props}>{children}</CardBody>;
 };

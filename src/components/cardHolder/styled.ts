@@ -1,11 +1,12 @@
 import styled from "styled-components/macro";
 
-export const CardBody = styled.div`
+export const CardBody = styled.div<{ style: React.CSSProperties }>`
     width: 6.8vw;
     height: 9.6vw;
     border-radius: 0.6vw;
     box-shadow: 0px 1px 4px  ${({ theme }) => theme.colors.borderColor};
 
+    ${({ style }) => style};
 
     ${({ imageUrl }) => imageUrl && ` 
         background-image: url(${imageUrl});
