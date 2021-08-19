@@ -25,6 +25,7 @@ export const RightSide = styled.div`
 export const Section = styled.div`
     display: flex;
     align-items: center;
+    min-width: 140px;
     color: ${({ theme }) => theme.colors.textColor};
 `;
 

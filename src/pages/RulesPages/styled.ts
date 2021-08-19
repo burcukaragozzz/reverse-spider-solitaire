@@ -7,10 +7,6 @@ export const PageContainer = styled(FullPageView)<{ themeName: string }>`
     padding: 2% 12%;
 `;
 
-export const RulesContainer = styled.div`
-    z-index: 2;
-`;
-
 export const Info = styled.p`
     color: ${({ theme }) => theme.colors.textColor};
     line-height: 24px;
@@ -38,6 +34,7 @@ export const GoBackButton = styled(TransparentButton)`
     position: absolute;
     left: 10px;
     bottom: 5px;
+    margin-top: 10px;
 `;
 
 export const Icon = styled.img`

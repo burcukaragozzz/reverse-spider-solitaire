@@ -11,7 +11,6 @@ export const CardsContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     padding: 4% 0 10%;
-    z-index: 1;
     margin-bottom: 50px;
 `;
 

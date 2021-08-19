@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 
 export const FullPageView = styled.div<{ themeName: string }>`
     position: relative;
+    z-index: 0;
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 80px);
@@ -15,6 +16,7 @@ export const FullPageView = styled.div<{ themeName: string }>`
         height: 100%;
         left: 0;
         top: 0;
+        z-index: -1;
         background-image: url('/images/bg-img.png');
         background-size: cover;
         background-repeat: no-repeat;

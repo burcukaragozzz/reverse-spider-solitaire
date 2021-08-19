@@ -13,5 +13,4 @@ export const BaseButton = styled.button`
     border: none;
     padding: 12px 32px;
     cursor: pointer;
-    z-index: 1;
 `;

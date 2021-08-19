@@ -28,11 +28,10 @@ export const ControlPanel: React.FC = () => {
                 <RightSide>
                     <Section>
                         <Icon src={'/icons/award.png'} width={36} />
-                        <Text>{score}</Text>
+                        Score : {score}
                     </Section>
                     <Section>
                         <Icon src={'/icons/timer.png'} width={36} />
-                        <Text>Timer :</Text>
                         <Timer />
                     </Section>
                 </RightSide>

@@ -26,7 +26,6 @@ const GlobalStyle = createGlobalStyle`
 
     a {
         text-decoration: none;
-        z-index: 1;
     }
 `;
 
