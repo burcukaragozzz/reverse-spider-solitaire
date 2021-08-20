@@ -1,16 +1,9 @@
-import { ICard } from 'interfaces';
+import { MockData } from 'test/mockData';
 import { flipLastCard } from '.';
-
-const createMockColumns = () => {
-    return [
-        { id: 1, cards: [{ rank: 1, isDown: true }, { rank: 2, isDown: true } as ICard] },
-        { id: 2, cards: [{ rank: 3, isDown: true }, { rank: 4, isDown: true } as ICard] },
-    ];
-};
 
 describe('flipLastCard', () => {
     test('Flips last remaining card from source column', () => {
-        const allColumns = createMockColumns();
+        const { allColumns } = MockData;
 
         flipLastCard(2, allColumns);
 
