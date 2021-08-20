@@ -1,24 +1,33 @@
-import { MockData } from 'test/mockData';
+import { generateCards } from '../generateCards';
 
-import { addCardsToColumn } from '../addCardsToColumn';
+import { dealCards } from '.';
 
-describe('addCardsToColumn', () => {
-    test('Adds the given cards to the given column', () => {
-        const { allColumns } = MockData;
+describe('dealCards', () => {
+    const cards = generateCards();
 
-        const targetColumn = allColumns[1];
+    const { columns, remainingCards } = dealCards(cards);
 
-        const movingCards = [{ rank: 2 }, { rank: 3 }];
+    test('Successfully distributed the number of cards in the columns', () => {
+        columns.forEach((column, index) => {
+            if (index > 3) {
+                expect(column.cards.length).toBe(5);
+            } else {
+                expect(column.cards.length).toBe(6);
+            }
+        });
+    });
 
-        const updatedTargetColumn = addCardsToColumn(targetColumn, movingCards, allColumns);
+    test('Flip the last card in each columns', () => {
+        columns.forEach(({ cards }, index) => {
+            if (index !== 10) {
+                expect(cards[cards.length - 1].isDown).toEqual(false);
+            }
+        });
+    });
 
-        expect(updatedTargetColumn.cards.length).toBe(3);
-
-        expect(allColumns[1].cards.length).toBe(3);
-
-        movingCards.forEach((card) => {
-            const isExistent = updatedTargetColumn.cards.find((c) => c.rank === card.rank);
-            expect(isExistent).toBeTruthy();
+    test('Check the length of the remaining cards to be dealt is kept in sets of 10', () => {
+        remainingCards.map((cards) => {
+            expect(cards.length).toBe(10);
         });
     });
 });
