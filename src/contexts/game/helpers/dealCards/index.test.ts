@@ -1,17 +1,10 @@
-import { ICard } from 'interfaces';
+import { MockData } from 'test/mockData';
 
 import { addCardsToColumn } from '../addCardsToColumn';
 
-const createMockColumns = () => {
-    return [
-        { id: 1, cards: [{ rank: 1 } as ICard] },
-        { id: 2, cards: [{ rank: 1 } as ICard] },
-    ];
-};
-
 describe('addCardsToColumn', () => {
     test('Adds the given cards to the given column', () => {
-        const allColumns = createMockColumns();
+        const { allColumns } = MockData;
 
         const targetColumn = allColumns[1];
 
