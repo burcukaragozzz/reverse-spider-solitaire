@@ -11,7 +11,6 @@ describe('generateCards', () => {
                     rank: expect.any(Number),
                     isSelected: expect.any(Boolean),
                     isDown: expect.any(Boolean),
-                    isHighlighted: expect.any(Boolean),
                     suit: expect.any(String),
                 }),
             );

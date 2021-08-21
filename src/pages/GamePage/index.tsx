@@ -61,7 +61,6 @@ export const GamePage: React.FC = () => {
                                         )
                                     }
                                     isDown={card.isDown}
-                                    isHighlighted={card.isHighlighted}
                                 />
                             ))
                         )}

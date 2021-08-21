@@ -3,6 +3,5 @@ export interface ICard {
     rank: number;
     isSelected: boolean;
     isDown: boolean;
-    isHighlighted: boolean;
     suit: string;
 }

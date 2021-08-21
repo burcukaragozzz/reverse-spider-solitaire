@@ -9,7 +9,6 @@ const generateCard = (params: Pick<ICard, 'id' | 'rank'>): ICard => ({
     suit: 'diamonds',
     isDown: true,
     isSelected: false,
-    isHighlighted: false,
 });
 
 export const generateCards = (): ICard[] => {
