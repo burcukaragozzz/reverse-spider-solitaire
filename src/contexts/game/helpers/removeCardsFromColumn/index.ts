@@ -7,6 +7,7 @@ import { IColumn, ICard } from 'interfaces';
  * @param allColumns Copy of all columns
  * @returns Updated column
  */
+
 export const removeCardsFromColumn = (column: IColumn, cards: ICard[], allColumns: IColumn[]) => {
     const updatedCards = column.cards.filter((card) => !cards.find(({ id }) => id === card.id));
 

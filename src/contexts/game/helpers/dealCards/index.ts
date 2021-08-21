@@ -2,6 +2,11 @@ import { chunk } from 'lodash';
 
 import { ICard } from 'interfaces';
 
+/**
+ * Identify the cards in the columns and the remaining cards.
+ * @param cards All cards
+ */
+
 export const dealCards = (cards: ICard[]) => {
     try {
         const chunks = chunk(cards.slice(0, 50), 5);

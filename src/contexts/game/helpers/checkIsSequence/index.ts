@@ -2,6 +2,11 @@ import { ICard } from 'interfaces';
 
 import { checkIsLessOneRank } from '../checkIsLessOneRank';
 
+/**
+ * Check selected cards are a sequence.
+ * @param cards Source card
+ */
+
 export const checkIsSequence = (cards: ICard[]) => {
     const { isSequence } = cards.reduce(
         (acc, curr) => {
