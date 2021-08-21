@@ -2,7 +2,7 @@ import { fireEvent, render } from 'test';
 
 import { Toggle } from './index';
 
-describe('Toggle component testing with testing-library', () => {
+describe('Toggle', () => {
     it('renders without crashing', () => {
         const component = render(<Toggle />);
 
@@ -20,7 +20,24 @@ describe('Toggle component testing with testing-library', () => {
     it('renders toggle button contain 2 images', () => {
         const { getByTestId } = render(<Toggle />);
 
-        const toggleBtn = getByTestId('toggle');
-        expect(toggleBtn.children).toHaveLength(2);
+        const icon = getByTestId('toggle').children;
+
+        expect(icon).toHaveLength(2);
+    });
+
+    it('renders light icon successfully', () => {
+        const { getByTestId } = render(<Toggle />);
+
+        const lightIcon = getByTestId('toggle').firstChild;
+
+        expect(lightIcon).toHaveAttribute('src', '/icons/light-icon.png');
+    });
+
+    it('renders dark icon successfully', () => {
+        const { getByTestId } = render(<Toggle />);
+
+        const darkIcon = getByTestId('toggle').lastChild;
+
+        expect(darkIcon).toHaveAttribute('src', '/icons/dark-icon.png');
     });
 });

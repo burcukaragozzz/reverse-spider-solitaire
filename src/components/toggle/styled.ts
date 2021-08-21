@@ -16,22 +16,15 @@ export const ToggleContainer = styled.button`
     &:focus {
         outline: none;
     }
+    img {
+        transition: all 0.3s linear;
 
-    div {
-        display: flex;
-        height: auto;
-        width: 1.5rem;
-
-        img {
-            transition: all 0.3s linear;
-
-            // light icon
-            &:first-child {
-            transform: ${({ theme }) => theme.name === "light" ? "translateY(0)" : "translateY(100px)"}}
-        
-            // dark icon
-            &:nth-child(2) {
-            transform: ${({ theme }) => theme.name === "light" ? "translateY(-100px)" : "translateY(0)"}}
-        }
+        // light icon
+        &:first-child {
+        transform: ${({ theme }) => theme.name === "light" ? "translateY(0)" : "translateY(100px)"}}
+    
+        // dark icon
+        &:nth-child(2) {
+        transform: ${({ theme }) => theme.name === "light" ? "translateY(-100px)" : "translateY(0)"}}
     }
 `;
