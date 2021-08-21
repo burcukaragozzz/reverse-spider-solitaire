@@ -3,9 +3,16 @@ import { useDrop } from 'react-dnd';
 
 import { useGame } from 'hooks';
 import { DragItem, ICard, IColumn, ISource, ITarget } from 'interfaces';
-import { Card, CardHolder, TopContainer, ControlPanel, CustomDragLayer, Modal } from 'components';
+import { Card, CardHolder, ControlPanel, CustomDragLayer, Modal } from 'components';
 
-import { PageContainer, DeckContainer, CardsContainer } from './styled';
+import {
+    PageContainer,
+    DeckContainer,
+    CardsContainer,
+    Container,
+    RemCardsContainer,
+    CompletedDeckCards,
+} from './styled';
 
 type ColumnProps = {
     column: IColumn;
@@ -24,6 +31,42 @@ const Column: React.FC<ColumnProps> = ({ children, column }) => {
     });
 
     return <DeckContainer ref={drop}>{children}</DeckContainer>;
+};
+
+const TopContainer: React.FC = () => {
+    const { startNextTurn, remainingCards, completedSequences, suit } = useGame();
+
+    return (
+        <Container>
+            <RemCardsContainer data-testid="remaining-cards">
+                {remainingCards.map((_, index) => (
+                    <CardHolder
+                        key={`r-${index}`}
+                        onClick={startNextTurn}
+                        imageUrl="/images/card_back.png"
+                        style={{
+                            marginLeft: '-50px',
+                        }}
+                    />
+                ))}
+            </RemCardsContainer>
+
+            <CompletedDeckCards data-testid="completed-deck-cards">
+                {completedSequences
+                    .sort((a, b) => a - b)
+                    .map((completed, index) =>
+                        completed ? (
+                            <CardHolder
+                                key={`c-${index}`}
+                                imageUrl={`/images/${suit}/${suit}_1.png`}
+                            />
+                        ) : (
+                            <CardHolder key={`c-${index}`} />
+                        ),
+                    )}
+            </CompletedDeckCards>
+        </Container>
+    );
 };
 
 export const GamePage: React.FC = () => {

@@ -4,7 +4,6 @@ export { Button } from './button';
 export { Toggle } from './toggle';
 export { Card } from './card';
 export { CardHolder } from './cardHolder';
-export { TopContainer } from './topContainer';
 export { SuitCard } from './suitCard';
 export { CustomDragLayer } from './customDragPreview';
 export { ControlPanel } from './controlPanel';
