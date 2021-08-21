@@ -1,18 +1,15 @@
 import React from 'react';
 
-import { useTheme } from 'definitions/styled-components';
 import { ToggleContainer } from './styled';
+import { IButton } from 'interfaces';
 
-export type IButton = React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
->;
+import { useTheme } from 'hooks';
 
 export const Toggle: React.FC<IButton> = () => {
-    const { toggle, themeName } = useTheme();
+    const { toggle } = useTheme();
 
     return (
-        <ToggleContainer themeName={themeName} onClick={toggle} data-testid="toggle">
+        <ToggleContainer onClick={toggle} data-testid="toggle">
             <div>
                 <img src="/icons/light-icon.png" alt="light-icon" width="32" height="32" />
                 <img src="/icons/dark-icon.png" alt="dark-icon" width="32" height="32" />

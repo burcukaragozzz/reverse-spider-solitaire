@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-export const ToggleContainer = styled.button<{ themeName: string }>`
+export const ToggleContainer = styled.button`
     position: relative;
     background: ${({ theme }) => theme.colors.toggleGradient};
     border: 1px solid ${({ theme }) => theme.colors.toggleBorder};
@@ -27,11 +27,11 @@ export const ToggleContainer = styled.button<{ themeName: string }>`
 
             // light icon
             &:first-child {
-            transform: ${({ themeName }) => themeName === "light" ? "translateY(0)" : "translateY(100px)"}}
+            transform: ${({ theme }) => theme.name === "light" ? "translateY(0)" : "translateY(100px)"}}
         
             // dark icon
             &:nth-child(2) {
-            transform: ${({ themeName }) => themeName === "light" ? "translateY(-100px)" : "translateY(0)"}}
+            transform: ${({ theme }) => theme.name === "light" ? "translateY(-100px)" : "translateY(0)"}}
         }
     }
 `;

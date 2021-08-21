@@ -1,15 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { useTheme } from 'definitions/styled-components';
-
 import { PageContainer, Info, Rules, Rule, Title, GoBackButton, Icon } from './styled';
 
 export const RulesPage: React.FC = () => {
-    const { themeName } = useTheme();
-
     return (
-        <PageContainer themeName={themeName}>
+        <PageContainer>
             <Info>
                 Sort cards on the tableau so they are in increasing order, from Ace to King. Once a
                 full sequence of ranks is built, it automatically moves to the foundation (cards
