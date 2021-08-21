@@ -1,15 +1,33 @@
-import { mockData } from 'test/mockData';
+import { ICard, IColumn } from 'interfaces';
 import { addCardsToColumn } from '.';
-import { IColumn } from 'interfaces';
 
 describe('addCardsToColumn', () => {
-    const { allColumns } = mockData;
+    const allColumns = [
+        {
+            id: 1,
+            cards: [
+                { rank: 1, isDown: true },
+                { rank: 3, isDown: true },
+            ],
+        },
+        {
+            id: 2,
+            cards: [
+                { rank: 4, isDown: true },
+                { rank: 4, isDown: true },
+            ],
+        },
+    ];
 
     const targetColumn = allColumns[0];
 
     const movingCards = allColumns[1].cards;
 
-    const updatedTargetColumn = addCardsToColumn(targetColumn as IColumn, movingCards, allColumns);
+    const updatedTargetColumn = addCardsToColumn(
+        targetColumn as IColumn,
+        movingCards as ICard[],
+        allColumns as IColumn[],
+    );
 
     test('Successfully adds the selected cards to the target column', () => {
         expect(allColumns[0].cards.length).toBe(4);

@@ -1,11 +1,12 @@
-import { mockData } from 'test/mockData';
+import { ICard } from 'interfaces';
 import { checkIsSequence } from '.';
 
 describe('checkIsSequence', () => {
-    const { allColumns } = mockData;
-
     test('returns true if all cards are a sequence', () => {
-        const cards = allColumns[2].cards;
+        const cards = [
+            { rank: 1, isDown: false },
+            { rank: 2, isDown: false },
+        ] as ICard[];
 
         const result = checkIsSequence(cards);
 
@@ -13,7 +14,10 @@ describe('checkIsSequence', () => {
     });
 
     test('returns false if all cards are not a sequence', () => {
-        const cards = allColumns[0].cards;
+        const cards = [
+            { rank: 1, isDown: false },
+            { rank: 3, isDown: false },
+        ] as ICard[];
 
         const result = checkIsSequence(cards);
 
