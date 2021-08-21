@@ -1,8 +1,8 @@
-import { MockData } from 'test/mockData';
+import { mockData } from 'test/mockData';
 import { checkIsLessOneRank } from '.';
 
 describe('checkIsLessOneRank', () => {
-    const { allColumns } = MockData;
+    const { allColumns } = mockData;
 
     const targetCard = allColumns[0].cards[1];
     test('Check with correct parameters that the target card is one rank less than the source card', () => {

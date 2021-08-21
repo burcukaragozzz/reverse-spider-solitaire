@@ -1,22 +1,22 @@
-import { MockData } from 'test/mockData';
+import { mockData } from 'test/mockData';
 import { checkIsSequence } from '.';
 
 describe('checkIsSequence', () => {
-    const { allColumns } = MockData;
+    const { allColumns } = mockData;
 
-    test('doğru', () => {
+    test('returns true if all cards are a sequence', () => {
         const cards = allColumns[2].cards;
 
-        const sonuc = checkIsSequence(cards);
+        const result = checkIsSequence(cards);
 
-        expect(sonuc).toEqual(true);
+        expect(result).toBe(true);
     });
 
-    test('yanlış', () => {
+    test('returns false if all cards are not a sequence', () => {
         const cards = allColumns[0].cards;
 
-        const sonuc = checkIsSequence(cards);
+        const result = checkIsSequence(cards);
 
-        expect(sonuc).toEqual(false);
+        expect(result).toBe(false);
     });
 });

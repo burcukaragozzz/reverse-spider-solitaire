@@ -1,9 +1,9 @@
-import { MockData } from 'test/mockData';
+import { mockData } from 'test/mockData';
 import { flipLastCard } from '.';
 
 describe('flipLastCard', () => {
     test('Flips last remaining card from source column', () => {
-        const { allColumns } = MockData;
+        const { allColumns } = mockData;
 
         flipLastCard(2, allColumns);
 

@@ -1,8 +1,8 @@
 import { dealRemainingCards } from '.';
-import { MockData } from 'test/mockData';
+import { mockData } from 'test/mockData';
 
 describe('dealRemainingCards', () => {
-    const { allColumns, remainingCards, updatedColumns } = MockData;
+    const { allColumns, remainingCards, updatedColumns } = mockData;
 
     const { columns, remainingCards: updatedRemainingCards } = dealRemainingCards(
         allColumns,
@@ -12,10 +12,7 @@ describe('dealRemainingCards', () => {
     test('Successfully deal the remaining cards, one for each column', () => {
         expect(columns).toEqual(updatedColumns);
 
-        // remainingCards.forEach((card, index) => {
-        //     const isExistent = allColumns[index].cards.find((c) => c.rank === card.rank);
-        //     expect(isExistent).toBeTruthy();
-        // });
+        expect(columns[0].cards.length).toBe(3);
     });
     test('Check the number of remaining cards', () => {
         expect(updatedRemainingCards.length).toBe(0);
