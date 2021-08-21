@@ -2,9 +2,9 @@ import { fireEvent, render } from 'test';
 
 import { Button } from './index';
 
-describe('Button component testing with testing-library', () => {
+describe('Button', () => {
     it('renders without crashing', () => {
-        const component = render(<Button onClick={() => undefined} />);
+        const component = render(<Button />);
 
         expect(component).toBeTruthy();
     });

@@ -1,5 +1,7 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { render as baseRender, RenderOptions, RenderResult } from '@testing-library/react';
+
+import { StyledThemeProvider } from 'contexts';
 
 /**
  * Custom renderer example with @testing-library/react
@@ -10,7 +12,7 @@ import { render as baseRender, RenderOptions, RenderResult } from '@testing-libr
  */
 
 export const AllTheProviders = ({ children }) => {
-    return <>{children}</>;
+    return <StyledThemeProvider>{children}</StyledThemeProvider>;
 };
 
 const render = (ui: ReactElement, options?: Omit<RenderOptions, 'queries'>) =>
