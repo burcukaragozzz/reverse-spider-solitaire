@@ -10,7 +10,7 @@ export type Props = {
 
 export const SuitCard: React.FC<Props> = ({ suit, isSelected, onClick }) => {
     return (
-        <SuitBox suit={suit} onClick={onClick}>
+        <SuitBox suit={suit} onClick={onClick} data-testid="suit-card">
             <Suit isSelected={isSelected} src={`/images/${suit}/${suit}_1.png`} />
         </SuitBox>
     );
