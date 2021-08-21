@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
-import { StyledThemeProvider } from 'definitions/styled-components';
 import GlobalStyle from 'styles/globalStyles';
 
-import { GameProvider } from 'contexts';
+import { GameProvider, StyledThemeProvider } from 'contexts';
 
 import { Header } from 'components';
 import { HomePage, GamePage, RulesPage } from 'pages';
