@@ -24,4 +24,11 @@ describe('HomePage', () => {
 
         cy.url().should('include', 'http://localhost:3000/rules');
     });
+
+    it('Header font-size should be 14 between 400px and 768px width', () => {
+        cy.viewport(400, 768);
+
+        cy.visit('/');
+        cy.get('span').contains('Spider Solitaire').should('have.css', 'font-size', '26px');
+    });
 });
