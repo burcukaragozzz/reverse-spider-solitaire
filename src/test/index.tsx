@@ -1,4 +1,6 @@
 import { ReactElement } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { render as baseRender, RenderOptions, RenderResult } from '@testing-library/react';
 
 import { StyledThemeProvider } from 'contexts';
@@ -12,7 +14,11 @@ import { StyledThemeProvider } from 'contexts';
  */
 
 export const AllTheProviders = ({ children }) => {
-    return <StyledThemeProvider>{children}</StyledThemeProvider>;
+    return (
+        <StyledThemeProvider>
+            <DndProvider backend={HTML5Backend}>{children}</DndProvider>
+        </StyledThemeProvider>
+    );
 };
 
 const render = (ui: ReactElement, options?: Omit<RenderOptions, 'queries'>) =>
