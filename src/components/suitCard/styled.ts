@@ -1,9 +1,13 @@
 import styled from "styled-components/macro";
 
 export const SuitBox = styled.div`
-    width: 200px;
-    height: 300px;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-basis: calc(50% - 20px);
+        justify-content: center;
+    }
 `;
 
 export const Suit = styled.img`

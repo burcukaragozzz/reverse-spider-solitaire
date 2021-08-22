@@ -20,6 +20,12 @@ export const SuitsContainer = styled.div`
     display: flex;
     gap: 20px;
     margin-bottom: 60px;
+
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 60px;
+    }
 `;
 
 export const ButtonsContainer = styled.div`

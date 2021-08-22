@@ -16,6 +16,16 @@ export const Info = styled.p`
 export const Rules = styled.ul`
     margin: 12px 0;
     padding: 0;
+
+    &:nth-child(4) {
+        margin-bottom: 100px;
+    }
+    
+    @media (max-width: 768px) {
+        &:nth-child(4) {
+            margin-bottom: 100px;
+        }
+    }
 `;
 
 export const Title = styled.span`
@@ -35,7 +45,7 @@ export const GoBackButton = styled(TransparentButton)`
     position: absolute;
     left: 10px;
     bottom: 5px;
-    margin-top: 10px;
+    // margin-top: 100px;
 `;
 
 export const Icon = styled.img`
