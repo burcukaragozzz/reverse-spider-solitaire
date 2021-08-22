@@ -6,6 +6,14 @@ export const GameReducer: Reducer<IGameState, Action<GameActions>> = (state, act
     const { type, payload } = action;
 
     switch (type) {
+        case GameActions.START_GAME:
+            return {
+                ...state,
+                columns: payload.columns,
+                remainingCards: payload.remainingCards,
+                score: 0,
+                completedSequences: Array(8).fill(0),
+            };
         case GameActions.SET_COLUMNS_AND_REMAINING_CARDS:
             return {
                 ...state,

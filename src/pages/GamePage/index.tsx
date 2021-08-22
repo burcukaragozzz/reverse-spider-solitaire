@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useGame } from 'hooks';
@@ -20,6 +20,7 @@ export const GamePage: React.FC = () => {
         completedSequences,
         dispatch,
         score,
+        restartGame,
     } = useGame();
 
     const history = useHistory();
@@ -80,7 +81,10 @@ export const GamePage: React.FC = () => {
                     <Modal
                         title="CONGRATULATIONS!"
                         confirmLabel="Start a New Game"
-                        onConfirm={() => history.push('/')}
+                        onConfirm={() => {
+                            history.push('/');
+                            restartGame();
+                        }}
                     >
                         You completed the game with {score} scores.
                     </Modal>

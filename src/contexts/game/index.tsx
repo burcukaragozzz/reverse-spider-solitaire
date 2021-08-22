@@ -17,6 +17,8 @@ import {
 } from './helpers';
 import { GameActions } from './types';
 
+const cards = generateCards();
+
 export const GameProvider = (props) => {
     const [state, dispatch] = useReducer(GameReducer, {
         columns: [],
@@ -30,15 +32,13 @@ export const GameProvider = (props) => {
 
     const { source, columns, remainingCards, target, completedSequences } = state;
 
-    const initializeState = () => {
-        const cards = generateCards();
-
+    const startGame = () => {
         const shuffledCards = shuffle(cards);
 
         const { columns, remainingCards } = dealCards(shuffledCards);
 
         dispatch({
-            type: GameActions.SET_COLUMNS_AND_REMAINING_CARDS,
+            type: GameActions.START_GAME,
             payload: { columns, remainingCards },
         });
     };
@@ -195,7 +195,7 @@ export const GameProvider = (props) => {
     };
 
     useEffect(() => {
-        initializeState();
+        startGame();
     }, []);
 
     useEffect(() => {
@@ -205,6 +205,7 @@ export const GameProvider = (props) => {
 
     const contextValue = {
         ...state,
+        restartGame: startGame,
         startNextTurn,
         setTargetSafely,
         setSourceSafely,

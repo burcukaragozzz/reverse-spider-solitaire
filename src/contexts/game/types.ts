@@ -19,6 +19,7 @@ export interface IGame extends IGameState {
     getMovingCards: (column: IColumn, card: ICard) => ICard[];
     move: (source: ISource, target: ITarget) => void;
     startNextTurn: VoidFunction;
+    restartGame: VoidFunction;
 }
 
 export enum GameActions {
@@ -29,4 +30,5 @@ export enum GameActions {
     COMPLETE_SEQUENCE,
     SET_SUIT,
     SET_ERROR,
+    START_GAME,
 }
