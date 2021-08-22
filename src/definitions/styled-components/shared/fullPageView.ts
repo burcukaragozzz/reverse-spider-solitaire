@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-export const FullPageView = styled.div<{ themeName: string }>`
+export const FullPageView = styled.div`
     position: relative;
     z-index: 0;
     display: flex;
@@ -20,6 +20,7 @@ export const FullPageView = styled.div<{ themeName: string }>`
         background-image: url('/images/bg-img.png');
         background-size: cover;
         background-repeat: no-repeat;
-        opacity: ${({ theme }) => (theme.name === 'light' ? '.2' : '.8')}}
+        background-attachment: fixed;
+        opacity: ${({ theme }) => (theme.name === 'light' ? '.1' : '.8')}}
     }
 `;

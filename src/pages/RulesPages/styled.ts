@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import { FullPageView, TransparentButton } from 'definitions/styled-components';
 
-export const PageContainer = styled(FullPageView)<{ themeName: string }>`
+export const PageContainer = styled(FullPageView)`
     display: flex;
     flex-direction: column;
     padding: 2% 12%;
@@ -21,6 +21,7 @@ export const Rules = styled.ul`
 export const Title = styled.span`
     margin-bottom: 20px;
     line-height: 42px;
+    font-size: 20px;
     color: ${({ theme }) => theme.colors.green};
 `;
 

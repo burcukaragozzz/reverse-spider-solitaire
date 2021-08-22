@@ -17,7 +17,7 @@ const BoxDragPreview = () => {
                 flexDirection: 'column',
                 backgroundColor: 'yellow',
                 boxShadow: 'unset',
-                height: '100',
+                height: '100%',
             }}
         >
             {movingCards.length
@@ -44,7 +44,7 @@ const layerStyles: CSSProperties = {
     left: 0,
     top: 0,
     width: '100%',
-    height: '100',
+    height: '100%',
 };
 
 function getItemStyles(initialOffset: XYCoord | null, currentOffset: XYCoord | null) {
