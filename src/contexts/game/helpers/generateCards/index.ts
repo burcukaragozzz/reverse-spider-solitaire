@@ -1,9 +1,5 @@
 import { ICard } from 'interfaces';
 
-const generateId = (i: number, j: number) => {
-    return i + j + new Date().getMilliseconds().toString() + Math.random();
-};
-
 const generateCard = (params: Pick<ICard, 'id' | 'rank'>): ICard => ({
     ...params,
     suit: 'diamond',
@@ -19,7 +15,7 @@ export const generateCards = (): ICard[] => {
 
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < ranks.length; j++) {
-                const id = generateId(i, j);
+                const id = `${i}+${j}`;
                 const rank = ranks[j];
                 const card = generateCard({ id, rank });
                 cards.push(card);
