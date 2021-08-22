@@ -28,8 +28,9 @@ export const HomePage: React.FC = () => {
         <PageContainer>
             <Menu>
                 <SuitsContainer>
-                    {suits.map((suit) => (
+                    {suits.map((suit, index) => (
                         <SuitCard
+                            id={index}
                             key={suit}
                             suit={suit}
                             isSelected={suit === selectedSuit}

@@ -20,7 +20,7 @@ export const Modal: React.FC<IModal> = ({
     onReject,
 }) => {
     return (
-        <ModalWrapper>
+        <ModalWrapper id="modal">
             <ModalContainer>
                 <Header>{title}</Header>
                 <Content>{children}</Content>

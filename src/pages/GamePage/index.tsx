@@ -40,7 +40,7 @@ const TopContainer: React.FC = () => {
 
     return (
         <Container>
-            <RemCardsContainer data-testid="remaining-cards">
+            <RemCardsContainer data-testid="remaining-cards" className="remaining-cards">
                 {remainingCards.map((_, index) => (
                     <CardHolder
                         key={`r-${index}`}
@@ -53,7 +53,7 @@ const TopContainer: React.FC = () => {
                 ))}
             </RemCardsContainer>
 
-            <CompletedDeckCards data-testid="completed-deck-cards">
+            <CompletedDeckCards data-testid="completed-deck-cards" className="completed-deck-cards">
                 {completedSequences
                     .sort((a, b) => a - b)
                     .map((completed, index) =>
@@ -101,7 +101,7 @@ export const GamePage: React.FC = () => {
             <CustomDragLayer />
             <CardsContainer>
                 {columns.map((column, index) => (
-                    <Column column={column} key={index + '2'}>
+                    <Column column={column} key={index}>
                         {column.cards.length === 0 ? (
                             <CardHolder onClick={() => handleCardClick(column)} />
                         ) : (

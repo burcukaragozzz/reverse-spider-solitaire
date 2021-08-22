@@ -1,19 +1,27 @@
-describe('Homepage', () => {
+describe('HomePage', () => {
     beforeEach(() => {
-        cy.visit('/');
-    });
-    it('Brings header', () => {
-        cy.getBySel('main-heading').should('contain.text', 'superplate');
+        cy.visit('http://localhost:3000/');
     });
 
-    it('Should have true href', () => {
-        // https://github.com/cypress-io/cypress-example-recipes/blob/master/examples/testing-dom__tab-handling-links/cypress/integration/tab_handling_anchor_links_spec.js
-        cy.getBySel('docs-btn-anchor')
-            .should('have.prop', 'href')
-            .and('equal', 'https://pankod.github.io/superplate/');
+    it('Should render modal when click the button without select a team', () => {
+        cy.get('button').contains('Start Game').click();
+
+        cy.get('#modal').should(
+            'contain.text',
+            'Please select the suit you want to continue to start the game.',
+        );
     });
 
-    it('Should have icons', () => {
-        cy.getBySel('icon').should('have.length', 6);
+    it('Should return to the game page if selected suit', () => {
+        cy.get('#diamond1').click();
+        cy.get('button').contains('Start Game').click();
+
+        cy.url().should('include', 'http://localhost:3000/game');
+    });
+
+    it('should return to the rules page if rules button is clicked', () => {
+        cy.get('button').contains('Rules').click();
+
+        cy.url().should('include', 'http://localhost:3000/rules');
     });
 });

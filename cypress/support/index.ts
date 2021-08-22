@@ -10,7 +10,7 @@ declare global {
              * Custom command to select DOM element by selector.
              * @example cy.getBySel('greeting')
              */
-            getBySel(target: string): Chainable<Element>;
+            dataCy(target: string): Chainable<Element>;
         }
     }
 }
