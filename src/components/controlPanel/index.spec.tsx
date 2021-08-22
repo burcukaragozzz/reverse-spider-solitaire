@@ -23,16 +23,12 @@ describe('ControlPanel', () => {
         getByText('Back Home');
     });
 
-    xit('modal', () => {
-        const mockFn = jest.fn();
-
+    it('open modal if click back home button', () => {
         const { getByText } = render(<ControlPanel />);
 
         const backBtn = getByText('Back Home');
 
         fireEvent.click(backBtn);
-
-        expect(mockFn).toHaveBeenCalledTimes(1);
 
         getByText('If you come back the game will be over. Are you sure want to come back?');
     });
