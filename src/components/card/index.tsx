@@ -12,26 +12,17 @@ export type Props = {
     card: ICard;
     isDown: boolean;
     isSelected: boolean;
-    isHighlighted?: boolean;
     onClick?: VoidFunction;
 };
 
-export const Card: React.FC<Props> = ({
-    id,
-    column,
-    card,
-    isDown,
-    isSelected,
-    isHighlighted,
-    onClick,
-}) => {
+export const Card: React.FC<Props> = ({ id, column, card, isDown, isSelected, onClick }) => {
     const { rank } = card;
 
     const { getMovingCards, suit } = useGame();
 
     const imageUrl = isDown ? '/images/card_back.png' : `/images/${suit}/${suit}_${rank}.png`;
 
-    const [_, drag] = useDrag({
+    const [{ isDragging }, drag] = useDrag({
         type: DragItem.Card,
         item: () => {
             const cards = getMovingCards(column, card);
@@ -40,15 +31,30 @@ export const Card: React.FC<Props> = ({
 
             return source;
         },
+        canDrag: () => {
+            const cards = getMovingCards(column, card);
+
+            return cards.length > 0;
+        },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
     });
 
     return (
-        <Container ref={drag}>
+        <Container>
             <CardOverlay />
-
-            <CardBody id={id} isSelected={isSelected} isHighlighted onClick={onClick}>
-                <CardImage isDown={isDown} src={imageUrl} alt="card" />
-            </CardBody>
+            <div>
+                <CardBody
+                    id={id}
+                    isSelected={isSelected}
+                    onClick={onClick}
+                    ref={drag}
+                    className="card"
+                >
+                    <CardImage isDown={isDown} src={imageUrl} alt="card" data-testid="card-image" />
+                </CardBody>
+            </div>
         </Container>
     );
 };
