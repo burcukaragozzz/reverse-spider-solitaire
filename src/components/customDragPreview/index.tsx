@@ -6,21 +6,11 @@ import { Card } from 'components';
 const BoxDragPreview = () => {
     const dragDropManager = useDragDropManager();
 
-    const movingCards = dragDropManager.getMonitor().getItem();
+    const movingCards = dragDropManager.getMonitor().getItem().cards;
 
     return (
-        <div
-            style={{
-                position: 'relative',
-                zIndex: 9999,
-                display: 'flex',
-                flexDirection: 'column',
-                backgroundColor: 'yellow',
-                boxShadow: 'unset',
-                height: '100%',
-            }}
-        >
-            {movingCards.length
+        <div>
+            {movingCards
                 ? movingCards.map((card, index) => (
                       <div
                           key={`moving-${index}`}
@@ -63,7 +53,7 @@ function getItemStyles(initialOffset: XYCoord | null, currentOffset: XYCoord | n
     };
 }
 
-export const CustomDragLayer: FC = (props) => {
+export const CustomDragLayer: FC = () => {
     const { isDragging, initialOffset, currentOffset } = useDragLayer((monitor) => ({
         item: monitor.getItem(),
         initialOffset: monitor.getInitialSourceClientOffset(),
@@ -75,13 +65,7 @@ export const CustomDragLayer: FC = (props) => {
 
     return (
         <div style={layerStyles}>
-            <div
-                style={{
-                    position: 'fixed',
-                    zIndex: 9999,
-                    ...getItemStyles(initialOffset, currentOffset),
-                }}
-            >
+            <div style={{ ...getItemStyles(initialOffset, currentOffset) }}>
                 <BoxDragPreview />
             </div>
         </div>

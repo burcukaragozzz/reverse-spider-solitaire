@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDrag } from 'react-dnd';
+import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import { useGame } from 'hooks';
 import { ICard, IColumn, DragItem, ISource } from 'interfaces';
 
-import { Container, CardBody, CardImage, CardOverlay } from './styled';
+import { Container, CardBody, CardImage } from './styled';
 
 export type Props = {
     id: string;
@@ -22,7 +23,7 @@ export const Card: React.FC<Props> = ({ id, column, card, isDown, isSelected, on
 
     const imageUrl = isDown ? '/images/card_back.png' : `/images/${suit}/${suit}_${rank}.png`;
 
-    const [{ isDragging }, drag] = useDrag({
+    const [_, drag, preview] = useDrag({
         type: DragItem.Card,
         item: () => {
             const cards = getMovingCards(column, card);
@@ -36,14 +37,14 @@ export const Card: React.FC<Props> = ({ id, column, card, isDown, isSelected, on
 
             return cards.length > 0;
         },
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-        }),
+    });
+
+    useEffect(() => {
+        preview(getEmptyImage(), { captureDraggingState: true });
     });
 
     return (
         <Container>
-            <CardOverlay />
             <div>
                 <CardBody
                     id={id}
@@ -52,7 +53,13 @@ export const Card: React.FC<Props> = ({ id, column, card, isDown, isSelected, on
                     ref={drag}
                     className="card"
                 >
-                    <CardImage isDown={isDown} src={imageUrl} alt="card" data-testid="card-image" />
+                    <CardImage
+                        isDown={isDown}
+                        src={imageUrl}
+                        draggable={false}
+                        alt="card"
+                        data-testid="card-image"
+                    />
                 </CardBody>
             </div>
         </Container>

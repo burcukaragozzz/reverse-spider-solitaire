@@ -34,11 +34,3 @@ export const CardImage = styled.img`
     width: 100%;
     height: 100%;
 `;
-
-export const CardOverlay = styled.div`
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: fit-content;
-    height: 100%;
-`;
