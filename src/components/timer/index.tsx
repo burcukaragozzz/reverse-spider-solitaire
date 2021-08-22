@@ -19,5 +19,5 @@ export const Timer: React.FC = () => {
         return () => clearInterval(timer);
     }, [seconds]);
 
-    return <span style={{ minWidth: '100px' }}>{`${hours}:${mins}:${secs}`}</span>;
+    return <span>{`${hours}:${mins}:${secs}`}</span>;
 };

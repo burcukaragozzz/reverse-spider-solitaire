@@ -5,7 +5,7 @@ import { useGame } from 'hooks';
 import { Modal, Timer } from 'components';
 import { TransparentButton } from 'definitions/styled-components';
 
-import { PanelContainer, Icon, RightSide, Section, Text } from './styled';
+import { PanelContainer, Icon, RightSide, Section } from './styled';
 
 export const ControlPanel: React.FC = () => {
     const { score } = useGame();

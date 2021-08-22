@@ -22,12 +22,27 @@ export const DeckContainer = styled.div`
 export const Container = styled.div`
     position: relative;
     margin-bottom: 8%;
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 30px;
+    }
 `;
 
 export const RemCardsContainer = styled.div`
     position: absolute;
     display: flex;
     left: 50px;
+
+    @media (max-width: 768px) {
+        position: inherit;
+        left: 0;
+        gap: 10px;
+    }
 `;
 
 export const CompletedDeckCards = styled.div`
@@ -35,4 +50,8 @@ export const CompletedDeckCards = styled.div`
     right: 0;
     display: flex;
     gap: 10px;
+
+    @media (max-width: 768px) {
+        position: inherit;
+    }
 `;

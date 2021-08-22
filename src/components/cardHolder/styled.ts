@@ -8,6 +8,10 @@ export const CardBody = styled.div<{ style: React.CSSProperties }>`
 
     ${({ style }) => style};
 
+    @media (max-width: 768px) {
+        margin-left: 0 !important;
+    }
+ 
     ${({ imageUrl }) => imageUrl && ` 
         background-image: url(${imageUrl});
         background-size: cover;

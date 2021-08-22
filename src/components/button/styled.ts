@@ -13,4 +13,12 @@ export const BaseButton = styled.button`
     border: none;
     padding: 12px 32px;
     cursor: pointer;
+
+    @media (max-width: 400px) {
+        font-size: 14px !important;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 18px !important;
+    }
 `;
