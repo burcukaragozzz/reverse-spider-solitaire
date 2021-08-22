@@ -9,3 +9,4 @@ export { CustomDragLayer } from './customDragPreview';
 export { ControlPanel } from './controlPanel';
 export { Modal } from './modal';
 export { Timer } from './timer';
+export { Fireworks } from './fireworks';
