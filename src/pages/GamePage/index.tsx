@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDrop } from 'react-dnd';
 
 import { useGame } from 'hooks';
 import { DragItem, ICard, IColumn, ISource, ITarget } from 'interfaces';
-import { Card, CardHolder, ControlPanel, CustomDragLayer, Modal } from 'components';
+import { Card, CardHolder, ControlPanel, CustomDragLayer, Fireworks, Modal } from 'components';
 
 import {
     PageContainer,
@@ -13,6 +14,7 @@ import {
     RemCardsContainer,
     CompletedDeckCards,
 } from './styled';
+import { GameActions } from 'contexts/game/types';
 
 type ColumnProps = {
     column: IColumn;
@@ -70,8 +72,18 @@ const TopContainer: React.FC = () => {
 };
 
 export const GamePage: React.FC = () => {
-    const { columns, source, setTargetSafely, setSourceSafely, error } = useGame();
-    const [isCloseModal, setIsCloseModal] = useState(true);
+    const {
+        columns,
+        source,
+        setTargetSafely,
+        setSourceSafely,
+        error,
+        completedSequences,
+        dispatch,
+        score,
+    } = useGame();
+
+    const history = useHistory();
 
     const handleCardClick = (selectedColumn: IColumn, selectedCard?: ICard) => {
         if (source) {
@@ -80,6 +92,8 @@ export const GamePage: React.FC = () => {
             setSourceSafely(selectedColumn, selectedCard);
         }
     };
+
+    const gameOver = completedSequences.filter((sequence) => sequence === 1).length === 8;
 
     return (
         <PageContainer>
@@ -111,10 +125,27 @@ export const GamePage: React.FC = () => {
                 ))}
             </CardsContainer>
             <ControlPanel />
-            {error && isCloseModal && (
-                <Modal title="Warning" onConfirm={() => setIsCloseModal(false)}>
+            {error && (
+                <Modal
+                    title="Warning"
+                    onConfirm={() => {
+                        dispatch({ type: GameActions.SET_ERROR, payload: '' });
+                    }}
+                >
                     {error}
                 </Modal>
+            )}
+            {gameOver && (
+                <>
+                    <Fireworks />
+                    <Modal
+                        title="CONGRATULATIONS!"
+                        confirmLabel="Start a New Game"
+                        onConfirm={() => history.push('/')}
+                    >
+                        You completed the game with {score} scores.
+                    </Modal>
+                </>
             )}
         </PageContainer>
     );

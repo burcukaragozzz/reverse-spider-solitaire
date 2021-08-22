@@ -6,7 +6,7 @@ const generateId = (i: number, j: number) => {
 
 const generateCard = (params: Pick<ICard, 'id' | 'rank'>): ICard => ({
     ...params,
-    suit: 'diamonds',
+    suit: 'diamond',
     isDown: true,
     isSelected: false,
 });
