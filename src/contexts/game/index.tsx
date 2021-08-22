@@ -125,7 +125,9 @@ export const GameProvider = (props) => {
         const hasEmptyColumn = columns.find((column) => column.cards.length === 0);
 
         if (hasEmptyColumn)
-            return setError('There must be at least one card in each tableau column.');
+            return setError(
+                'There must be at least one card in each tableau column  before you can deal a new row of cards.',
+            );
 
         dispatch({
             type: GameActions.SET_COLUMNS_AND_REMAINING_CARDS,
