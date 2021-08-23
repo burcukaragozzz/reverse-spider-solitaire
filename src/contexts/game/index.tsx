@@ -148,7 +148,7 @@ export const GameProvider = (props) => {
         const has13Cards = facedUpCards.length >= 13;
 
         if (has13Cards) {
-            const isSequence = checkIsSequence(facedUpCards);
+            const isSequence = checkIsSequence(facedUpCards.slice(-13));
 
             if (isSequence) {
                 setTimeout(() => {
