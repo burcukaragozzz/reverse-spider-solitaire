@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDrop } from 'react-dnd';
 
 import { useGame } from 'hooks';

@@ -1,6 +1,6 @@
-import { Button } from 'components';
-import React, { ReactNode } from 'react';
+import React from 'react';
 
+import { Button } from 'components';
 import { ModalContainer, Header, ModalWrapper, Content, ButtonContainer } from './styled';
 
 export type IModal = {

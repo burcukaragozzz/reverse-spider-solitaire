@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { useGame } from 'hooks';
-import { Button, Modal, SuitCard } from 'components';
 import { GameActions } from 'contexts/game/types';
+import { Button, Modal, SuitCard } from 'components';
 
 import { PageContainer, Menu, SuitsContainer, ButtonsContainer, RulesButton, Icon } from './styled';
 
