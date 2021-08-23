@@ -1,0 +1,6 @@
+- name: Image Resizer Action
+  uses: sharadcodes/img-resizer@v1.1
+  with:
+      image-folder: 'public/images/spade' # This is a Required field & this folder has original images
+      new-resolution: '108x157' # This is Required field
+      output-folder: 'public/images/deneme' # This is Required field & this folder will be used to store resized images
