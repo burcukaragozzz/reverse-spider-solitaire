@@ -38,6 +38,8 @@ export const GamePage: React.FC = () => {
 
     const gameOver = completedSequences.filter((sequence) => sequence === 1).length === 8;
 
+    gameOver && new Audio(gameoverAudio).play();
+
     return (
         <PageContainer>
             <TopContainer />
@@ -78,7 +80,6 @@ export const GamePage: React.FC = () => {
             )}
             {gameOver && (
                 <>
-                    {new Audio(gameoverAudio).play()}
                     <Fireworks />
                     <Modal
                         title="CONGRATULATIONS!"
