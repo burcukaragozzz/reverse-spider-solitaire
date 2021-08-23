@@ -12,6 +12,7 @@ export const CardBody = styled.div`
     width: 6.8vw;
     height: 9.6vw;
     margin-bottom: -8.0vw;
+    background-color: ${({ theme }) => theme.colors.lightGrey} ;
 
     &:hover {
         box-shadow: 4px 4px 10px rgb(247, 210, 0);
@@ -30,7 +31,8 @@ export const CardBody = styled.div`
     }
 `;
 
-export const CardImage = styled.img`
+export const CardImage = styled.img<{isVisible: boolean}>`
     width: 100%;
     height: 100%;
+    opacity: ${({ isVisible }) => isVisible ? 1 : 0 };
 `;

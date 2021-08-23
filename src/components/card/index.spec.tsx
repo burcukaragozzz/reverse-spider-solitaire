@@ -5,12 +5,7 @@ import { Card } from './index';
 describe('Card', () => {
     it('renders without crashing', () => {
         const component = render(
-            <Card
-                id={'2'}
-                isSelected={false}
-                isDown={false}
-                card={{ id: '3', rank: 2, isSelected: false, isDown: false, suit: 'diamonds' }}
-            />,
+            <Card card={{ id: '3', rank: 2, isDown: false, suit: 'diamonds' }} />,
         );
 
         expect(component).toBeTruthy();
@@ -20,13 +15,7 @@ describe('Card', () => {
         const mockFn = jest.fn();
 
         const { getByTestId } = render(
-            <Card
-                id={'2'}
-                isSelected={false}
-                isDown={false}
-                card={{ id: '3', rank: 2, isSelected: false, isDown: false, suit: 'diamonds' }}
-                onClick={mockFn}
-            />,
+            <Card card={{ id: '3', rank: 2, isDown: false, suit: 'diamonds' }} onClick={mockFn} />,
         );
 
         const cardBody = getByTestId('card-image').parentElement;
@@ -38,12 +27,7 @@ describe('Card', () => {
 
     it('render card image successfuly', () => {
         const { getByTestId } = render(
-            <Card
-                id={'2'}
-                isSelected={false}
-                isDown={false}
-                card={{ id: '3', rank: 2, isSelected: false, isDown: false, suit: 'diamonds' }}
-            />,
+            <Card card={{ id: '3', rank: 2, isDown: false, suit: 'diamonds' }} />,
         );
 
         getByTestId('card-image');
@@ -51,12 +35,7 @@ describe('Card', () => {
 
     it('should show box-shadow and border styles if isSelected prop', () => {
         const { getByTestId } = render(
-            <Card
-                id={'2'}
-                isSelected={true}
-                isDown={false}
-                card={{ id: '3', rank: 2, isSelected: true, isDown: false, suit: 'diamonds' }}
-            />,
+            <Card card={{ id: '3', rank: 2, isDown: false, suit: 'diamonds' }} isSelected={true} />,
         );
 
         const cardBody = getByTestId('card-image').parentElement;
@@ -68,12 +47,7 @@ describe('Card', () => {
 
     it('should show default background image for card if isDown prop', () => {
         const { getByTestId } = render(
-            <Card
-                id={'2'}
-                isSelected={false}
-                isDown={true}
-                card={{ id: '3', rank: 2, isSelected: false, isDown: true, suit: 'diamonds' }}
-            />,
+            <Card card={{ id: '3', rank: 2, isDown: true, suit: 'diamonds' }} />,
         );
 
         const cardImage = getByTestId('card-image');

@@ -9,7 +9,6 @@ describe('generateCards', () => {
                 expect.objectContaining({
                     id: expect.any(String),
                     rank: expect.any(Number),
-                    isSelected: expect.any(Boolean),
                     isDown: expect.any(Boolean),
                     suit: expect.any(String),
                 }),

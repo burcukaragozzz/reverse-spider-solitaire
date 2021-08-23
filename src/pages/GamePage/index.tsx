@@ -47,7 +47,6 @@ export const GamePage: React.FC = () => {
                         ) : (
                             column.cards.map((card) => (
                                 <Card
-                                    id={card.id}
                                     key={card.id}
                                     onClick={() => handleCardClick(column, card)}
                                     column={column}
@@ -57,7 +56,6 @@ export const GamePage: React.FC = () => {
                                             (movingCard) => movingCard.id === card.id,
                                         )
                                     }
-                                    isDown={card.isDown}
                                 />
                             ))
                         )}
@@ -83,7 +81,7 @@ export const GamePage: React.FC = () => {
                         confirmLabel="Start a New Game"
                         onConfirm={() => {
                             history.push('/');
-                            restartGame();
+                            // restartGame();
                         }}
                     >
                         You completed the game with {score} scores.

@@ -1,14 +1,9 @@
 import { ICard } from 'interfaces';
 
-// const generateId = (i: number, j: number) => {
-//     return i + j + new Date().getMilliseconds().toString() + Math.random();
-// };
-
 const generateCard = (params: Pick<ICard, 'id' | 'rank'>): ICard => ({
     ...params,
     suit: 'diamond',
     isDown: true,
-    isSelected: false,
 });
 
 export const generateCards = (): ICard[] => {

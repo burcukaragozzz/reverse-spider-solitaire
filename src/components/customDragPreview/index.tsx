@@ -19,7 +19,7 @@ const BoxDragPreview = () => {
                               zIndex: index + 1,
                           }}
                       >
-                          <Card id={card.id} card={card} isDown={card.isDown} isSelected={false} />
+                          <Card card={card} />
                       </div>
                   ))
                 : null}
