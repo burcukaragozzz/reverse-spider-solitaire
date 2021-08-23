@@ -42,7 +42,6 @@ export const ControlPanel: React.FC = () => {
                     confirmLabel="YES"
                     rejectLabel="NO"
                     onConfirm={() => {
-                        restartGame();
                         history.push('/');
                     }}
                     onReject={() => setIsOpenModal(false)}
