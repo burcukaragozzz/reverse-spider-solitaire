@@ -5,6 +5,8 @@ import { ICard, IColumn, ISource, ITarget } from 'interfaces';
 
 import { GameContext } from './context';
 import { GameReducer } from './reducer';
+import { GameActions } from './types';
+
 import {
     removeCardsFromColumn,
     addCardsToColumn,
@@ -15,7 +17,10 @@ import {
     checkIsSequence,
     checkIsLessOneRank,
 } from './helpers';
-import { GameActions } from './types';
+
+import flickAudio from 'assets/sounds/card-flick.mp3';
+import dealAudio from 'assets/sounds/deal-cards.mp3';
+import sequenceAudio from 'assets/sounds/sequence.mp3';
 
 const cards = generateCards();
 
@@ -129,6 +134,8 @@ export const GameProvider = (props) => {
                 'There must be at least one card in each tableau column  before you can deal a new row of cards.',
             );
 
+        new Audio(dealAudio).play();
+
         dispatch({
             type: GameActions.SET_COLUMNS_AND_REMAINING_CARDS,
             payload: dealRemainingCards(columns, remainingCards),
@@ -170,12 +177,20 @@ export const GameProvider = (props) => {
                         },
                     });
                 }, 600);
+
+                new Audio(sequenceAudio).play();
             }
         }
     };
 
     const move = (source: ISource, target: ITarget) => {
+        const isSameColumn = source.column.id === target.column.id;
+
+        if (isSameColumn) return;
+
         const canMove = checkCanMove(source, target);
+
+        new Audio(flickAudio).play();
 
         if (canMove) {
             const { updatedTargetColumn, columnsCopy } = setUpdatedColumns(source, target);

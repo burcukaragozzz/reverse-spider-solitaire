@@ -8,6 +8,9 @@ import { ICard, IColumn } from 'interfaces';
 
 import { TopContainer } from './topContainer';
 import { Column } from './column';
+
+import gameoverAudio from 'assets/sounds/gameover.mp3';
+
 import { PageContainer, CardsContainer } from './styled';
 
 export const GamePage: React.FC = () => {
@@ -75,6 +78,7 @@ export const GamePage: React.FC = () => {
             )}
             {gameOver && (
                 <>
+                    {new Audio(gameoverAudio).play()}
                     <Fireworks />
                     <Modal
                         title="CONGRATULATIONS!"
