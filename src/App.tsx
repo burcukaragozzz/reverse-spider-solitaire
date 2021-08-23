@@ -21,7 +21,7 @@ function App(): JSX.Element {
                                 <Route exact path="/" component={HomePage} />
                                 <Route exact path="/game" component={GamePage} />
                                 <Route exact path="/rules" component={RulesPage} />
-                                <Route component={NoResult} />
+                                <Route path="*" component={NoResult} />
                             </Switch>
                         </Router>
                     </div>

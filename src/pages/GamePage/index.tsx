@@ -1,98 +1,27 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
 import { useGame } from 'hooks';
-import { GameActions } from 'contexts/game/types';
-import { Card, CardHolder, ControlPanel, CustomDragLayer, Fireworks, Modal } from 'components';
-import { ICard, IColumn } from 'interfaces';
+import { ControlPanel, CustomDragLayer } from 'components';
 
-import { TopContainer } from './topContainer';
-import { Column } from './column';
-
-import gameoverAudio from 'assets/sounds/gameover.mp3';
-
-import { PageContainer, CardsContainer } from './styled';
+import { PageContainer } from './styled';
+import { ErrorModal, GameOver, Table, TopContainer } from './components';
 
 export const GamePage: React.FC = () => {
-    const {
-        columns,
-        source,
-        setTargetSafely,
-        setSourceSafely,
-        error,
-        completedSequences,
-        dispatch,
-        score,
-        restartGame,
-    } = useGame();
+    const { restartGame } = useGame();
 
-    const history = useHistory();
-
-    const handleCardClick = (selectedColumn: IColumn, selectedCard?: ICard) => {
-        if (source) {
-            setTargetSafely(selectedColumn);
-        } else {
-            setSourceSafely(selectedColumn, selectedCard);
-        }
-    };
-
-    const gameOver = completedSequences.filter((sequence) => sequence === 1).length === 8;
-
-    gameOver && new Audio(gameoverAudio).play();
+    useEffect(() => {
+        return () => restartGame();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <PageContainer>
             <TopContainer />
             <CustomDragLayer />
-            <CardsContainer>
-                {columns.map((column, index) => (
-                    <Column column={column} key={index}>
-                        {column.cards.length === 0 ? (
-                            <CardHolder onClick={() => handleCardClick(column)} />
-                        ) : (
-                            column.cards.map((card) => (
-                                <Card
-                                    key={card.id}
-                                    onClick={() => handleCardClick(column, card)}
-                                    column={column}
-                                    card={card}
-                                    isSelected={
-                                        !!source?.cards.find(
-                                            (movingCard) => movingCard.id === card.id,
-                                        )
-                                    }
-                                />
-                            ))
-                        )}
-                    </Column>
-                ))}
-            </CardsContainer>
+            <Table />
             <ControlPanel />
-            {error && (
-                <Modal
-                    title="Warning"
-                    onConfirm={() => {
-                        dispatch({ type: GameActions.SET_ERROR, payload: '' });
-                    }}
-                >
-                    {error}
-                </Modal>
-            )}
-            {gameOver && (
-                <>
-                    <Fireworks />
-                    <Modal
-                        title="CONGRATULATIONS!"
-                        confirmLabel="Start a New Game"
-                        onConfirm={() => {
-                            restartGame();
-                            history.push('/');
-                        }}
-                    >
-                        You completed the game with {score} scores.
-                    </Modal>
-                </>
-            )}
+            <ErrorModal />
+            <GameOver />
         </PageContainer>
     );
 };

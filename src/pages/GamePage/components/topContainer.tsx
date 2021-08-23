@@ -3,7 +3,7 @@ import React from 'react';
 import { useGame } from 'hooks';
 import { CardHolder } from 'components';
 
-import { Container, RemCardsContainer, CompletedDeckCards } from './styled';
+import { Container, RemCardsContainer, CompletedDeckCards } from '../styled';
 
 export const TopContainer: React.FC = () => {
     const { startNextTurn, remainingCards, completedSequences, suit } = useGame();
