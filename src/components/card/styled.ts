@@ -26,8 +26,8 @@ export const CardBody = styled.div`
 
     @media (max-width: 768px) {
         margin-bottom: -7vw;
-        width: 7.6vw;
-        height: 10.6vw;
+        width: 8vw;
+        height: 11vw;
         border-radius: 4px;
     }
 `;

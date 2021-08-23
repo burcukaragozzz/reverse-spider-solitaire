@@ -25,6 +25,7 @@ export const ModalContainer = styled.div`
     min-height: 30%;
     min-width: 30%;
     border-radius: 8px;
+    margin: 30px;
 `;
 
 export const Header = styled.span`
