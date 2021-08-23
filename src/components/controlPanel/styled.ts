@@ -43,7 +43,7 @@ export const Section = styled.div`
     color: ${({ theme }) => theme.colors.textColor};
 
     @media (max-width: 768px) {
-        min-width: 100px;
+        min-width: 125px;
     }
 `;
 

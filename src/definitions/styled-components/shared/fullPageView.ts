@@ -17,7 +17,7 @@ export const FullPageView = styled.div`
         left: 0;
         top: 0;
         z-index: -1;
-        background-image: url('/images/bg-img.png');
+        background-image: url('/images/bg-img-min.png');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
