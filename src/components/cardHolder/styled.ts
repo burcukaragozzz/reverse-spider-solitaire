@@ -12,8 +12,9 @@ export const CardBody = styled.div<{ style: React.CSSProperties }>`
         margin-left: 0 !important;
     }
  
-    ${({ imageUrl }) => imageUrl && ` 
+    ${({ imageUrl, theme }) => imageUrl && ` 
         background-image: url(${imageUrl});
+        background-color: ${theme.colors.lightGrey};
         background-size: cover;
         background-repeat: no-repeat;
         border: 1px solid black;
