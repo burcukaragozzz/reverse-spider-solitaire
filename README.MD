@@ -7,6 +7,7 @@ This project was generated with [superplate](https://github.com/pankod/superplat
 
 Sort cards on the tableau so they are in increasing order, from Ace to King. Once a full sequence of ranks is built, it automatically moves to the foundation (cards cannot be placed on the foundation individually). The game is won once all cards are in the foundation.
 
+### [Demo](https://react-reversed-spider-solitaire.netlify.app/)
 
 ## Available Scripts
 
@@ -14,12 +15,6 @@ Sort cards on the tableau so they are in increasing order, from Ace to King. Onc
 
 ```bash
     npm run dev
-```
-
-### Running the production server.
-
-```bash
-    npm run start
 ```
 
 ### Building for production.
