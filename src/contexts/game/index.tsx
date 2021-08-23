@@ -197,7 +197,7 @@ export const GameProvider = (props) => {
 
             discardSequenceSafely(updatedTargetColumn, columnsCopy);
         } else {
-            setError('You cannot move!');
+            setError('You cannot move, they are no sequence!');
         }
     };
 
