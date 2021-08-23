@@ -5,7 +5,8 @@ This project was generated with [superplate](https://github.com/pankod/superplat
 
 ## Getting Started
 
-superplate is a Next.js or React.js all-in-one project generator. Create your project with the tools you need without spending hours on setting them up.
+Sort cards on the tableau so they are in increasing order, from Ace to King. Once a full sequence of ranks is built, it automatically moves to the foundation (cards cannot be placed on the foundation individually). The game is won once all cards are in the foundation.
+
 
 ## Available Scripts
 
@@ -21,6 +22,12 @@ superplate is a Next.js or React.js all-in-one project generator. Create your pr
     npm run start
 ```
 
+### Building for production.
+
+```bash
+    npm run build
+```
+
 ### Testing for production.
 
 ```bash
@@ -32,7 +39,7 @@ superplate is a Next.js or React.js all-in-one project generator. Create your pr
 
 ![Project Screenshots](https://user-images.githubusercontent.com/33669461/130489058-7650f9c6-92fc-4361-b90c-dc4c365c9817.png)
 
-https://user-images.githubusercontent.com/33669461/130490155-12060dcf-ddf2-4317-8372-c009536040eb.mov
+https://user-images.githubusercontent.com/33669461/130491452-d59de92c-d82d-4b8d-a98e-57419a097d6e.mov
 
 
 ## Test Coverage
