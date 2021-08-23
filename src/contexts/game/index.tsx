@@ -22,8 +22,6 @@ import flickAudio from 'assets/sounds/card-flick.mp3';
 import dealAudio from 'assets/sounds/deal-cards.mp3';
 import sequenceAudio from 'assets/sounds/sequence.mp3';
 
-const cards = generateCards();
-
 export const GameProvider = (props) => {
     const [state, dispatch] = useReducer(GameReducer, {
         columns: [],
@@ -38,6 +36,8 @@ export const GameProvider = (props) => {
     const { source, columns, remainingCards, target, completedSequences } = state;
 
     const startGame = () => {
+        const cards = generateCards();
+
         const shuffledCards = shuffle(cards);
 
         const { columns, remainingCards } = dealCards(shuffledCards);

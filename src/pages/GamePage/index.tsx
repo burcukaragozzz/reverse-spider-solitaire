@@ -85,8 +85,8 @@ export const GamePage: React.FC = () => {
                         title="CONGRATULATIONS!"
                         confirmLabel="Start a New Game"
                         onConfirm={() => {
+                            restartGame();
                             history.push('/');
-                            // restartGame();
                         }}
                     >
                         You completed the game with {score} scores.

@@ -8,7 +8,7 @@ import { TransparentButton } from 'definitions/styled-components';
 import { PanelContainer, Icon, RightSide, Section } from './styled';
 
 export const ControlPanel: React.FC = () => {
-    const { score } = useGame();
+    const { score, restartGame } = useGame();
     const [isOpenModel, setIsOpenModal] = useState(false);
 
     const history = useHistory();
@@ -42,6 +42,7 @@ export const ControlPanel: React.FC = () => {
                     confirmLabel="YES"
                     rejectLabel="NO"
                     onConfirm={() => {
+                        restartGame();
                         history.push('/');
                     }}
                     onReject={() => setIsOpenModal(false)}
