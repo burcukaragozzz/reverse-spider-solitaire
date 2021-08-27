@@ -14,5 +14,7 @@ export const addCardsToColumn = (targetColumn: IColumn, cards: ICard[], allColum
         cards: [...targetColumn.cards, ...cards],
     };
 
-    return (allColumns[targetColumnIndex] = updatedTargetColumn);
+    allColumns[targetColumnIndex] = updatedTargetColumn;
+
+    return updatedTargetColumn;
 };

@@ -6,12 +6,12 @@ import { IColumn } from 'interfaces';
  * @param columns Copy of all columns
  */
 export const flipLastCard = (id: number, columns: IColumn[]) => {
-    const targetColumnIndex = columns.findIndex((column) => column.id === id);
+    const columnIndex = columns.findIndex((column) => column.id === id);
 
-    const targetColumn = columns[targetColumnIndex];
+    const column = columns[columnIndex];
 
-    const updatedColumnCards = targetColumn.cards.map((card, index) => {
-        const isLast = index === targetColumn.cards.length - 1;
+    const updatedColumnCards = column.cards.map((card, index) => {
+        const isLast = index === column.cards.length - 1;
 
         return isLast
             ? {
@@ -23,5 +23,5 @@ export const flipLastCard = (id: number, columns: IColumn[]) => {
 
     const updatedSourceColumn = { id, cards: updatedColumnCards };
 
-    columns[targetColumnIndex] = updatedSourceColumn;
+    columns[columnIndex] = updatedSourceColumn;
 };
