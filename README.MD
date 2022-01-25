@@ -1,5 +1,5 @@
 # reverse-spider-solitaire
-<img src="fa-crown.svg" width="50" height="50">
+
 This project was generated with [superplate](https://github.com/pankod/superplate).
 
 ## Getting Started
